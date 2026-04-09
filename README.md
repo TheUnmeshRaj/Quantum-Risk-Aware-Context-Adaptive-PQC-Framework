@@ -1,150 +1,275 @@
 
-# **Quantum Risk-Aware Context-Adaptive Post-Quantum Cryptographic Framework**
+# Quantum Risk-Aware Context-Adaptive Post-Quantum Cryptographic Framework
 
-## 📌 Overview
+## Overview
 
-This project presents an intelligent framework for transitioning modern digital systems to post-quantum cryptography (PQC). With the rapid advancement of quantum computing, traditional cryptographic schemes such as RSA and Elliptic Curve Cryptography are expected to become insecure.
+This project presents an intelligent framework for transitioning modern digital systems to **post-quantum cryptography (PQC)**.
 
-Rather than simply replacing existing algorithms, this project focuses on **how to deploy PQC efficiently across diverse systems**. It introduces a risk-driven and context-aware approach that selects appropriate cryptographic configurations based on system requirements and constraints.
+With the rapid advancement of quantum computing, traditional cryptographic schemes such as RSA and ECC are expected to become insecure. Rather than simply replacing these algorithms, this framework focuses on **how to deploy PQC efficiently across diverse, real-world systems**.
+
+It introduces a **risk-driven, context-aware approach** that dynamically selects cryptographic configurations based on system requirements, constraints, and threat exposure.
 
 ---
 
-## ❗ Problem Statement
+## Problem Statement
 
-Current research in post-quantum cryptography primarily focuses on developing new algorithms. However, there is a lack of structured frameworks that guide **how these algorithms should be deployed in real-world environments**, especially across systems with varying capabilities.
+Most PQC research focuses on algorithm design, but there is limited guidance on:
 
-Applying the same level of security across all devices can lead to:
+* How to deploy PQC in heterogeneous environments
+* How to balance **security vs performance vs resource constraints**
+
+Applying uniform security across all systems leads to:
 
 * Unnecessary computational overhead
 * Performance degradation
 * Inefficient resource utilization
 
-This project addresses this gap by introducing an adaptive deployment strategy.
+This project addresses that gap through **adaptive cryptographic deployment**.
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 * Design a **risk-driven framework** for PQC adoption
-* Develop a **Quantum Risk Index (QRI)** to quantify system vulnerability
+* Develop a **Quantum Risk Index (QRI)** to quantify vulnerability
 * Enable **context-aware cryptographic selection**
-* Support **hybrid classical + post-quantum migration**
+* Support **hybrid classical + PQC migration**
 * Simulate real-world heterogeneous systems
 
 ---
 
-## 🧠 System Architecture
+## System Architecture
 
-The framework consists of two main layers:
+The framework consists of two core layers:
 
-### 1. Quantum Risk Evaluation Engine
+### 1. Quantum Risk Evaluation Engine (`risk_engine.py`)
 
-This layer computes a **Quantum Risk Index (QRI)** based on:
+Computes a **Quantum Risk Index (QRI)** from 0–100 using weighted factors:
 
-* Data sensitivity
-* System exposure level
-* Data lifetime
-* Adversarial risk window
-* Device constraints (CPU, memory, energy, latency)
+| Factor            | Weight | Description                     |
+| ----------------- | ------ | ------------------------------- |
+| Data Sensitivity  | 30%    | Impact of compromise            |
+| Data Lifetime     | 25%    | Required protection duration    |
+| Threat Window     | 20%    | Time available for attackers    |
+| Exposure Level    | 15%    | Accessibility of system         |
+| Device Capability | 10%    | Hardware constraints (inverted) |
 
-The output is a **numerical risk score (0–100)** representing the urgency of quantum-safe protection.
+A **non-linear amplifier** boosts risk in “harvest now, decrypt later” scenarios.
 
 ---
 
-### 2. Context-Aware Cryptographic Decision Engine
+### 2. Context-Aware Cryptographic Decision Engine (`decision_engine.py`)
 
-This layer uses the QRI and system constraints to select appropriate cryptographic configurations.
+Uses QRI + device capability to select optimal configurations:
 
-It can choose between:
-
-* Post-quantum algorithms (Kyber, Dilithium, Falcon, SPHINCS+, Classic McEliece)
+* PQC algorithms (Kyber, Dilithium, Falcon, SPHINCS+, Classic McEliece)
 * Hybrid classical + PQC modes
-* Different security levels based on system needs
+* Adaptive security levels
 
-This ensures that cryptographic decisions are **adaptive, efficient, and context-aware**.
+#### Decision Mapping (Simplified)
+
+| QRI Range | Capability | Configuration                       |
+| --------- | ---------- | ----------------------------------- |
+| < 30      | Any        | Hybrid RSA-2048 + Kyber-512         |
+| 30–50     | Low        | Kyber-512 + Falcon                  |
+| 30–50     | High       | Kyber-768 + Dilithium               |
+| 50–70     | Mid        | Kyber-768 + Falcon                  |
+| 70–85     | High       | Kyber-1024 + Dilithium-5            |
+| ≥ 85      | High       | Kyber-1024 + Dilithium-5 + SPHINCS+ |
 
 ---
 
-## ⚙️ How It Works
+## How It Works
 
-1. Input system parameters (sensitivity, exposure, device capability, etc.)
-2. Compute Quantum Risk Index (QRI)
-3. Map QRI to cryptographic configuration
-4. Apply selected PQC or hybrid scheme
+1. Input system parameters (sensitivity, exposure, constraints)
+2. Compute **Quantum Risk Index (QRI)**
+3. Map QRI → cryptographic configuration
+4. Apply PQC or hybrid scheme
 5. Evaluate performance (latency, overhead, scalability)
 
 ---
 
-## 🧪 Implementation
+## Implementation
 
-The project is implemented as a **simulated smart environment** with multiple device types:
+### Project Structure
 
-* IoT devices (low power)
-* Workstations (moderate capability)
-* Servers (high capability)
-* Public-facing systems (high exposure)
-
-Key components:
-
-* Risk scoring engine (rule-based)
-* Decision engine for cryptographic selection
-* Integration with PQC libraries (e.g., oqs-python, pqcrypto)
-* Optional visualization/dashboard for results
+```
+pqc_framework/
+├── risk_engine.py
+├── decision_engine.py
+├── devices.py
+├── pqc_simulator.py
+├── main.py
+└── README.md
+```
 
 ---
 
-## 🚀 Novelty
+### Key Components
 
-* Introduces a **quantified risk model (QRI)** for quantum threats
-* Enables **adaptive cryptographic deployment**, not static selection
-* Bridges the gap between **PQC research and real-world implementation**
-* Focuses on **deployment strategy rather than algorithm design**
+#### `devices.py`
+
+Defines 6 real-world system profiles:
+
+* IoT Sensor (low power)
+* Workstation
+* Public API Server
+* Hospital Database (critical)
+* Industrial Controller
+* Smart Home Hub
 
 ---
 
-## 🌍 Impact
+#### `pqc_simulator.py`
 
-This framework helps organizations:
+* Simulates PQC operations with:
+
+  * Correct NIST key sizes (FIPS 203/204/205)
+  * Real RSA-2048 (via `cryptography`)
+  * Realistic timing behavior
+* Supports easy upgrade to real PQC libraries
+
+---
+
+## How to Run
+
+### Install dependency
+
+```bash
+pip install cryptography
+```
+
+### Full simulation
+
+```bash
+python main.py
+```
+
+### Fast mode (no crypto)
+
+```bash
+python main.py --no-crypto
+```
+
+### Run specific device
+
+```bash
+python main.py --device "Hospital"
+```
+
+---
+
+## Upgrading to Real PQC
+
+Install Open Quantum Safe bindings:
+
+```bash
+pip install oqs
+```
+
+Replace simulated functions in `pqc_simulator.py`:
+
+```python
+import oqs
+
+with oqs.KeyEncapsulation("Kyber768") as kem:
+    public_key = kem.generate_keypair()
+
+with oqs.Signature("Dilithium3") as sig:
+    public_key = sig.generate_keypair()
+    signature = sig.sign(b"message")
+```
+
+---
+
+## Example Output
+
+```
+DEVICE: Hospital Patient Records DB
+
+QRI Score: 97.8 / 100  → CRITICAL
+
+Selected Configuration:
+Kyber-1024 + Dilithium-5 + SPHINCS+-256s
+
+Mode: Pure PQC — Maximum Assurance
+Security: NIST Level 5
+```
+
+---
+
+## Architecture Flow
+
+```
+Device Profile
+    │
+    ▼
+risk_engine.py ──► QRI Score ──► decision_engine.py
+    │                                 │
+    ▼                                 ▼
+Weighted Risk Model            Algorithm Selection
+                                         │
+                                         ▼
+                                pqc_simulator.py
+                                         │
+                                         ▼
+                             Key sizes, timing, crypto ops
+```
+
+---
+
+## Novelty
+
+* Introduces a **quantified quantum risk model (QRI)**
+* Enables **adaptive cryptographic deployment**
+* Bridges **PQC research ↔ real-world systems**
+* Focuses on **deployment strategy**, not just algorithms
+
+---
+
+## Impact
+
+Helps organizations:
 
 * Prioritize systems based on quantum risk
-* Optimize resource usage while maintaining security
-* Enable gradual and practical migration to PQC
-* Build future-ready, quantum-resilient infrastructure
+* Optimize performance vs security trade-offs
+* Enable gradual PQC migration
+* Build **quantum-resilient infrastructure**
 
-Applicable domains include:
+### Applicable Domains
 
 * Smart cities
-* Healthcare systems
-* Financial systems
-* Industrial control systems
+* Healthcare
+* Finance
+* Industrial systems
 
 ---
 
-## 📊 Example
-
-| System Type     | QRI Score | Selected Configuration         |
-| --------------- | --------- | ------------------------------ |
-| IoT Sensor      | 55        | Hybrid (RSA + Kyber-512)       |
-| Workstation     | 70        | Kyber-768 + Dilithium          |
-| Database Server | 92        | Kyber-1024 + Strong Signatures |
-
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 * Python
-* Post-Quantum Libraries:
+* `cryptography` (RSA)
+* Optional:
 
   * oqs-python
   * pqcrypto
-* Simulation Framework
+
 ---
 
-## 📈 Future Work
+## Future Work
 
-* Integrate machine learning for adaptive risk scoring
-* Real-time network-based risk monitoring
-* Deployment on actual distributed systems
-* Integration with enterprise security infrastructure
+* Machine learning-based adaptive risk scoring
+* Real-time network risk monitoring
+* Deployment on distributed systems
+* Enterprise security integration
+
+---
+
+## Extending the Framework
+
+* Add device → `devices.py`
+* Adjust weights → `risk_engine.py`
+* Add algorithms → `decision_engine.py`
+* Modify thresholds → `select_algorithm()`
 
 ---

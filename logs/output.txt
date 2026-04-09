@@ -1,0 +1,232 @@
+========================================================================
+  Quantum Risk-Aware Context-Adaptive PQC Framework
+========================================================================
+  NIST FIPS 203/204/205 | Hybrid + Pure PQC modes
+────────────────────────────────────────────────────────────────────────
+  DEVICE: IoT Temperature Sensor
+  Low-power sensor deployed on a smart campus. Transmits ambient temperature and o...
+
+  Quantum Risk Index (QRI)
+  Score  :  50.0 / 100  [█████░░░░░]  ELEVATED
+
+  Factor contributions (weighted):
+    Data sensitivity    (raw=3.0)               9.00  ▪▪▪·······
+    Exposure level      (raw=7.0)               10.50  ▪▪▪▪······
+    Data lifetime       (raw=5.0)               12.50  ▪▪▪▪······
+    Threat window       (raw=5.0)               10.00  ▪▪▪·······
+    Device capability¹  (inv=8.0)               8.00  ▪▪▪·······
+    ¹ device_capability is inverted: weaker device = higher risk contribution
+
+  Selected Configuration
+  Algorithm : Kyber-512 + FALCON-512 (constrained profile)
+  Mode      : Pure PQC — Constrained Device
+  Security  : NIST Level 1 (128-bit quantum equivalent)
+  Key sizes : Kyber-512 pub: 800B | FALCON-512 sig: ~690B
+  Latency   : Fast — minimal memory footprint
+
+  Rationale
+QRI 50.0 (ELEVATED): 'IoT Temperature Sensor' requires strong PQC but
+    hardware capability limits algorithm choice. Using Kyber-512
+    constrained profile — hardware refresh should be prioritised.
+
+  ⚠  Capability Constraint
+NOTE: QRI warrants Kyber-768 but device capability is too low. Deployed
+    at Kyber-512 with scheduled hardware upgrade recommended.
+
+  Cryptographic Operations
+    Kyber-512 keygen                            0.78 KB   0.027 ms
+    Kyber-512 encapsulate                       0.75 KB   0.073 ms
+    Dilithium-2 sign                            2.36 KB   0.040 ms
+    Note: Constrained profile: minimum key and ciphertext sizes
+
+
+────────────────────────────────────────────────────────────────────────
+  DEVICE: Developer Workstation
+  Enterprise laptop used by software engineers. Stores source code, credentials, a...
+
+  Quantum Risk Index (QRI)
+  Score  :  62.7 / 100  [██████░░░░]  ELEVATED ✦ amplified
+
+  Factor contributions (weighted):
+    Data sensitivity    (raw=7.0)               21.00  ▪▪▪▪▪▪▪···
+    Exposure level      (raw=6.0)               9.00  ▪▪▪·······
+    Data lifetime       (raw=2.5)               6.25  ▪▪········
+    Threat window       (raw=7.0)               14.00  ▪▪▪▪▪·····
+    Device capability¹  (inv=2.0)               2.00  ▪·········
+    ¹ device_capability is inverted: weaker device = higher risk contribution
+
+  Selected Configuration
+  Algorithm : Kyber-768 + Dilithium-3
+  Mode      : Pure PQC
+  Security  : NIST Level 3 (192-bit quantum equivalent)
+  Key sizes : Kyber-768 pub: 1.2KB | KEM ct: 1.1KB | Dil-3 sig: 3.3KB
+  Latency   : Fast
+
+  Rationale
+QRI 62.7 (ELEVATED): 'Developer Workstation' has significant quantum
+    risk. Kyber-768 + Dilithium-3 at NIST Level 3 provides robust
+    protection. Capable hardware allows full PQC without performance
+    constraints.
+
+  Cryptographic Operations
+    Kyber-768 keygen                            1.16 KB   0.021 ms
+    Kyber-768 encapsulate                       1.06 KB   0.038 ms
+    Dilithium-3 sign                            3.22 KB   0.017 ms
+
+
+────────────────────────────────────────────────────────────────────────
+  DEVICE: Public API Server
+  Cloud-hosted REST API gateway serving mobile and web clients. Handles authentica...
+
+  Quantum Risk Index (QRI)
+  Score  :  41.8 / 100  [████░░░░░░]  MODERATE
+
+  Factor contributions (weighted):
+    Data sensitivity    (raw=6.0)               18.00  ▪▪▪▪▪▪····
+    Exposure level      (raw=9.5)               14.25  ▪▪▪▪▪·····
+    Data lifetime       (raw=1.0)               2.50  ▪·········
+    Threat window       (raw=3.0)               6.00  ▪▪········
+    Device capability¹  (inv=1.0)               1.00  ··········
+    ¹ device_capability is inverted: weaker device = higher risk contribution
+
+  Selected Configuration
+  Algorithm : Kyber-768 + Dilithium-3
+  Mode      : Pure PQC
+  Security  : NIST Level 3 (192-bit quantum equivalent)
+  Key sizes : Kyber-768 pub: 1.2KB | KEM ct: 1.1KB | Dil-3 sig: 3.3KB
+  Latency   : Fast
+
+  Rationale
+QRI 41.8 (MODERATE): 'Public API Server' has growing quantum risk
+    warranting pure PQC. Kyber-768 + Dilithium-3 at NIST Level 3
+    balances strong protection with practical performance.
+
+  Cryptographic Operations
+    Kyber-768 keygen                            1.16 KB   0.021 ms
+    Kyber-768 encapsulate                       1.06 KB   0.036 ms
+    Dilithium-3 sign                            3.22 KB   0.020 ms
+
+
+────────────────────────────────────────────────────────────────────────
+  DEVICE: Hospital Patient Records DB
+  On-premise PostgreSQL database storing electronic health records (EHR). Contains...
+
+  Quantum Risk Index (QRI)
+  Score  :  97.8 / 100  [██████████]  CRITICAL ✦ amplified
+
+  Factor contributions (weighted):
+    Data sensitivity    (raw=9.5)               28.50  ▪▪▪▪▪▪▪▪▪▪
+    Exposure level      (raw=5.0)               7.50  ▪▪········
+    Data lifetime       (raw=10.0)              25.00  ▪▪▪▪▪▪▪▪··
+    Threat window       (raw=9.5)               19.00  ▪▪▪▪▪▪····
+    Device capability¹  (inv=1.5)               1.50  ··········
+    ¹ device_capability is inverted: weaker device = higher risk contribution
+
+  Selected Configuration
+  Algorithm : Kyber-1024 + Dilithium-5 + SPHINCS+-256s
+  Mode      : Pure PQC — Maximum Assurance
+  Security  : NIST Level 5, dual-algorithm signing
+  Key sizes : Kyber-1024 pub: 1.6KB | SPHINCS sig: ~30KB (archive)
+  Latency   : Fast (Kyber/Dil), Slow (SPHINCS for archive ops)
+
+  Rationale
+QRI 97.8 (CRITICAL): 'Hospital Patient Records DB' has critical quantum
+    risk requiring maximum assurance. Dual-algorithm strategy:
+    Kyber-1024 + Dilithium-5 for operational use, SPHINCS+-256s for
+    archive/root signing. Defense-in-depth across two distinct
+    mathematical foundations.
+
+  Cryptographic Operations
+    Kyber-1024 keygen                           1.53 KB   0.027 ms
+    Kyber-1024 encapsulate                      1.53 KB   0.043 ms
+    Dilithium-5 sign                            4.49 KB   0.028 ms
+    SPHINCS+-256s sign (archive)               29.09 KB   0.088 ms
+
+
+────────────────────────────────────────────────────────────────────────
+  DEVICE: Industrial PLC Controller
+  Programmable Logic Controller managing a water treatment facility. Sends control...
+
+  Quantum Risk Index (QRI)
+  Score  :  85.5 / 100  [█████████░]  CRITICAL ✦ amplified
+
+  Factor contributions (weighted):
+    Data sensitivity    (raw=8.5)               25.50  ▪▪▪▪▪▪▪▪··
+    Exposure level      (raw=3.0)               4.50  ▪▪········
+    Data lifetime       (raw=7.5)               18.75  ▪▪▪▪▪▪····
+    Threat window       (raw=8.0)               16.00  ▪▪▪▪▪·····
+    Device capability¹  (inv=6.5)               6.50  ▪▪········
+    ¹ device_capability is inverted: weaker device = higher risk contribution
+
+  Selected Configuration
+  Algorithm : Kyber-1024 + Dilithium-5
+  Mode      : Pure PQC — High Assurance
+  Security  : NIST Level 5 (256-bit quantum equivalent)
+  Key sizes : Kyber-1024 pub: 1.6KB | Dil-5 sig: 4.6KB
+  Latency   : Fast (on capable hardware)
+
+  Rationale
+QRI 85.5 (CRITICAL): 'Industrial PLC Controller' has critical quantum
+    risk. Kyber-1024 + Dilithium-5 provides NIST Level 5 protection.
+    Consider offloading archive signing to a dedicated SPHINCS+ system.
+
+  ⚠  Capability Constraint
+NOTE: Maximum assurance profile (SPHINCS+ archive tier) requires higher
+    capability. Using Kyber-1024 + Dilithium-5 as primary config. Add
+    SPHINCS+ for archive operations if a secondary system is available.
+
+  Cryptographic Operations
+    Kyber-1024 keygen                           1.53 KB   0.016 ms
+    Kyber-1024 encapsulate                      1.53 KB   0.039 ms
+    Dilithium-5 sign                            4.49 KB   0.022 ms
+
+
+────────────────────────────────────────────────────────────────────────
+  DEVICE: Smart Home Hub
+  Consumer IoT gateway (e.g., Google Nest Hub type device). Manages smart locks, c...
+
+  Quantum Risk Index (QRI)
+  Score  :  48.5 / 100  [█████░░░░░]  MODERATE
+
+  Factor contributions (weighted):
+    Data sensitivity    (raw=5.0)               15.00  ▪▪▪▪▪·····
+    Exposure level      (raw=8.5)               12.75  ▪▪▪▪······
+    Data lifetime       (raw=2.5)               6.25  ▪▪········
+    Threat window       (raw=5.0)               10.00  ▪▪▪·······
+    Device capability¹  (inv=4.5)               4.50  ▪▪········
+    ¹ device_capability is inverted: weaker device = higher risk contribution
+
+  Selected Configuration
+  Algorithm : Kyber-768 + Dilithium-3
+  Mode      : Pure PQC
+  Security  : NIST Level 3 (192-bit quantum equivalent)
+  Key sizes : Kyber-768 pub: 1.2KB | KEM ct: 1.1KB | Dil-3 sig: 3.3KB
+  Latency   : Fast
+
+  Rationale
+QRI 48.5 (MODERATE): 'Smart Home Hub' has growing quantum risk
+    warranting pure PQC. Kyber-768 + Dilithium-3 at NIST Level 3
+    balances strong protection with practical performance.
+
+  Cryptographic Operations
+    Kyber-768 keygen                            1.16 KB   0.018 ms
+    Kyber-768 encapsulate                       1.06 KB   0.032 ms
+    Dilithium-3 sign                            3.22 KB   0.016 ms
+
+
+────────────────────────────────────────────────────────────────────────
+  SUMMARY TABLE
+────────────────────────────────────────────────────────────────────────
+  Device                             QRI  Tier        Algorithm
+  ────────────────────────────────────────────────────────────────────
+  IoT Temperature Sensor            50.0  ELEVATED    Kyber-512 + FALCON-512 (constrai…
+  Developer Workstation             62.7  ELEVATED    Kyber-768 + Dilithium-3
+  Public API Server                 41.8  MODERATE    Kyber-768 + Dilithium-3
+  Hospital Patient Records DB       97.8  CRITICAL    Kyber-1024 + Dilithium-5 + SPHIN…
+  Industrial PLC Controller         85.5  CRITICAL    Kyber-1024 + Dilithium-5
+  Smart Home Hub                    48.5  MODERATE    Kyber-768 + Dilithium-3
+
+────────────────────────────────────────────────────────────────────────
+  Framework: risk_engine → QRI score → decision_engine → algorithm config
+  Crypto: pqc_simulator (swap in oqs-python for real PQC operations)
+────────────────────────────────────────────────────────────────────────
