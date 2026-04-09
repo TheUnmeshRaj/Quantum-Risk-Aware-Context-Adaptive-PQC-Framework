@@ -28,8 +28,9 @@ import time
 
 from utils.decision_engine import select_algorithm
 from utils.devices import DEVICE_PROFILES
-from utils.pqc_simulator import run_crypto_demo
+from utils.pqc import run_crypto
 from utils.risk_engine import compute_qri, normalize_lifetime
+
 USE_COLOR = sys.stdout.isatty()
 # ---------------------------------------------------------------------------
 # Terminal colour helpers (works on macOS, Linux, and Windows 10+)
@@ -223,7 +224,7 @@ def main():
         crypto_result = None
         if run_crypto:
             try:
-                crypto_result = run_crypto_demo(
+                crypto_result = run_crypto(
                     algorithm_key = decision["algorithm_key"],
                     device_name   = profile["name"],
                 )
