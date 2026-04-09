@@ -141,6 +141,7 @@ ALGORITHM_CATALOGUE = {
 # Decision Rules
 # ---------------------------------------------------------------------------
 
+
 def select_algorithm(qri: float, device_capability: float, device_name: str = "") -> dict:
     """
     Select the optimal PQC configuration for a device given its QRI score

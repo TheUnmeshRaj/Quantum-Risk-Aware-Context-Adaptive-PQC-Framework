@@ -1,5 +1,5 @@
 """
-pqc_simulator.py
+pqc.py
 ================
 Post-Quantum Cryptography Simulation Layer
 

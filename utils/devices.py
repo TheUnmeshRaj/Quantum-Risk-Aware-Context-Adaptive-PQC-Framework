@@ -18,8 +18,6 @@ device_capability : 0–10. Compute/memory capability (0=extremely constrained).
 notes             : Human-readable rationale for parameter choices.
 """
 
-from utils.risk_engine import normalize_lifetime
-
 DEVICE_PROFILES = [
     {
         "name": "IoT Temperature Sensor",
