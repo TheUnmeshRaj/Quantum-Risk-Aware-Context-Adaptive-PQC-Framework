@@ -36,7 +36,14 @@ DEVICE_PROFILES = [
         # Data patterns need ~5 years of protection (building security intel)
         "threat_window":     5.0,
         # Severely constrained: MCU, no FPU, 64KB RAM
-        "device_capability": 2.0,
+        "hardware": {
+    "ram_kb": 64,
+    "flash_kb": 256,
+    "cpu": "ARM Cortex-M0+",
+    "cpu_freq_mhz": 48,
+    "has_fpu": False,
+    "bandwidth_kbps": 50
+},
         "notes": (
             "Long lifetime + constrained hardware = migration urgency despite "
             "low data sensitivity. Algorithm must fit in <32KB stack."
@@ -58,7 +65,14 @@ DEVICE_PROFILES = [
         # IP and credentials need ~7 years of protection post-theft
         "threat_window":     7.0,
         # High-end laptop: capable of running any PQC scheme
-        "device_capability": 8.0,
+        "hardware": {
+    "ram_kb": 32_000_000,   # 32GB
+    "flash_kb": 1_000_000_000,  # SSD
+    "cpu": "x86-64",
+    "cpu_freq_mhz": 3200,
+    "has_fpu": True,
+    "bandwidth_kbps": 100_000
+},
         "notes": (
             "High sensitivity and long threat window push this into elevated "
             "risk despite short device lifetime. Capable hardware means "
@@ -81,7 +95,14 @@ DEVICE_PROFILES = [
         # Auth tokens need only days; PII needs ~3 years
         "threat_window":     3.0,
         # Cloud VM with modern multi-core CPU: highly capable
-        "device_capability": 9.0,
+        "hardware": {
+    "ram_kb": 16_000_000,   # 16GB typical VM
+    "flash_kb": 500_000_000,
+    "cpu": "x86-64",
+    "cpu_freq_mhz": 2800,
+    "has_fpu": True,
+    "bandwidth_kbps": 1_000_000   # 1 Gbps
+},
         "notes": (
             "Very high exposure drives the score up despite moderate data "
             "sensitivity. Short data lifetime reduces HNDL risk. High "
@@ -105,7 +126,14 @@ DEVICE_PROFILES = [
         # PHI must remain confidential for patient lifetimes (~30 years)
         "threat_window":     9.5,
         # Dedicated database server: high capability
-        "device_capability": 8.5,
+       "hardware": {
+    "ram_kb": 128_000_000,  # 128GB
+    "flash_kb": 2_000_000_000,
+    "cpu": "x86-64 server",
+    "cpu_freq_mhz": 2600,
+    "has_fpu": True,
+    "bandwidth_kbps": 10_000_000   # 10 Gbps internal
+},
         "notes": (
             "Classic HNDL scenario: data encrypted today must stay private "
             "until 2055. Sensitivity × threat_window triggers the non-linear "
@@ -129,7 +157,14 @@ DEVICE_PROFILES = [
         # Safety-critical commands need protection for full device lifetime
         "threat_window":     8.0,
         # Constrained RTOS: limited RAM, no hardware crypto acceleration
-        "device_capability": 3.5,
+        "hardware": {
+    "ram_kb": 512,
+    "flash_kb": 2048,
+    "cpu": "MIPS embedded",
+    "cpu_freq_mhz": 200,
+    "has_fpu": False,
+    "bandwidth_kbps": 100
+},
         "notes": (
             "High sensitivity + long lifetime + constrained hardware = complex "
             "tradeoff. Low exposure moderates overall risk. Algorithm selection "
@@ -152,7 +187,14 @@ DEVICE_PROFILES = [
         # Home security data needs ~5 years confidentiality
         "threat_window":     5.0,
         # ARM A53: capable enough for Kyber-512/768 comfortably
-        "device_capability": 5.5,
+        "hardware": {
+    "ram_kb": 1_000_000,  # 1GB
+    "flash_kb": 8_000_000,
+    "cpu": "ARM Cortex-A53",
+    "cpu_freq_mhz": 1400,
+    "has_fpu": True,
+    "bandwidth_kbps": 10_000   # WiFi
+},
         "notes": (
             "High exposure on a consumer device with moderate capability. "
             "Typical target for mass-scale HNDL attacks on home networks."
