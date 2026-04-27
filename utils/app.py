@@ -1,11 +1,19 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from decision_engine import (
+from utils.decision_engine import (
     select_algorithm_scored,
     compute_capability_from_hardware
 )
-from risk_engine import compute_qri
+from utils.risk_engine import compute_qri
+from simulators.quantum_attack import run_simulation as run_qa_simulation
+from simulators.evaluate_framework import run_evaluation
 
 app = FastAPI(title="PQC Decision Engine")
 
@@ -62,3 +70,17 @@ def analyze_device(device: DeviceInput):
         "risk": risk,
         "decision": result
     }
+
+
+# -------------------------------
+# Simulation Endpoints
+# -------------------------------
+
+@app.get("/simulate/quantum_attack")
+def simulate_quantum_attack():
+    return run_qa_simulation(2048)
+
+
+@app.get("/simulate/migration")
+def simulate_migration():
+    return run_evaluation()

@@ -8,6 +8,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.devices import DEVICE_PROFILES
+from utils.decision_engine import compute_capability_from_hardware
 
 # Map 0-4 to required device capability
 CRYPTO_REQUIREMENTS = {
@@ -54,10 +55,11 @@ class PQCMigrationEnv(gym.Env):
             [self.max_threat_level + 1] + [5] * self.num_devices
         )
         
-        # Extract base capability (1-10) for each device
-        # The user's device profiles have a 'device_capability' or hardware fields.
-        # From utils/devices.py we know they have 'device_capability' defined in the dict
-        self.device_capabilities = [d.get("device_capability", 5) for d in self.devices]
+        # Derive capability (0-10) from hardware profile using the decision engine
+        self.device_capabilities = [
+            compute_capability_from_hardware(d.get("hardware", {}))
+            for d in self.devices
+        ]
 
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)

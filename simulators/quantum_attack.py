@@ -85,6 +85,17 @@ def print_pqc_resilience():
     print("Even Grover's algorithm only provides a square-root speedup, which is")
     print("easily mitigated by doubling the key size (e.g., Kyber-1024).")
 
+def run_simulation(key_bits=2048):
+    qc = create_conceptual_shor_circuit()
+    c_years, q_hours = extrapolate_rsa_break_time(key_bits)
+    return {
+        "classical_years": c_years,
+        "quantum_hours": q_hours,
+        "circuit_qubits": qc.num_qubits,
+        "circuit_depth": qc.depth(),
+        "gate_counts": dict(qc.count_ops())
+    }
+
 if __name__ == "__main__":
     print("="*60)
     print(" QUANTUM ATTACK SIMULATION (Shor's Algorithm Analysis)")

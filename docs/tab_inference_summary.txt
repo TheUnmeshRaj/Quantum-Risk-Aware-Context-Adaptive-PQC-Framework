@@ -1,0 +1,83 @@
+Inference Summary for Tabs: Quantum Attack Sim and Migration Analysis
+Date: 2026-04-24
+
+Source Basis
+- Code reviewed from simulators/* and utils/*
+- Runtime outputs validated from:
+  - simulators.quantum_attack.run_simulation(2048)
+  - simulators.evaluate_framework.run_evaluation()
+
+============================================================
+1) Quantum Attack Sim - Key Inferences
+============================================================
+What this tab demonstrates:
+- RSA-2048 is classically hard but becomes practically vulnerable under a fault-tolerant quantum model (Shor-style complexity).
+- PQC families (Kyber/ML-KEM, Dilithium/ML-DSA, SPHINCS+) remain the recommended direction because they are lattice/hash based, not integer-factorization based.
+
+Evidence from current simulation output:
+- Estimated classical break time (RSA-2048): ~4.857690517597469e+12 years
+- Estimated quantum break time (RSA-2048): ~4.77 hours
+- Conceptual circuit size: 8 qubits, depth 14
+- Gate counts: cp=10, h=8, measure=4, swap=2, x=1
+
+Interpretation:
+- The simulator provides a conceptual (pedagogical) quantum circuit and an extrapolated timeline model.
+- Even with simplified circuit construction, the trend is clear: cryptosystems tied to factorization are high-risk in a post-quantum horizon.
+- Strategic implication: migration should prioritize replacing RSA-dependent key exchange/signature paths with PQC-capable schemes.
+
+Important caveat:
+- The circuit shown is conceptual and not a full production-scale RSA-2048 Shor implementation.
+- The break-time estimate depends on assumptions (logical clock, error-corrected qubits, idealized scaling), so use it as directionally strong evidence, not a precise operational SLA.
+
+============================================================
+2) Migration Analysis - Key Inferences
+============================================================
+What this tab evaluates:
+- Three strategies over a 10-step threat escalation with heterogeneous devices:
+  1. status_quo  (RSA only)
+  2. paranoid    (max PQC everywhere)
+  3. adaptive    (device + threat aware assignment)
+- Metrics: reward, total cost, breaches, crashes, compliance.
+
+Current run results:
+- status_quo:
+  - reward: -5340
+  - cost: 29,385,000.00
+  - breaches: 54
+  - crashes: 0
+  - avg compliance: 0.0%
+
+- paranoid:
+  - reward: -700
+  - cost: 2,346,666.67
+  - breaches: 0
+  - crashes: 20
+  - avg compliance: 100.0%
+
+- adaptive:
+  - reward: -2032
+  - cost: 9,676,333.33
+  - breaches: 14
+  - crashes: 18
+  - avg compliance: 60.83%
+
+Interpretation of tradeoffs:
+- status_quo has the worst security and economics because breach penalties dominate over time.
+- paranoid maximizes compliance and eliminates breaches, but causes substantial operational instability on constrained devices (crashes).
+- adaptive balances constraints and threat progression, avoiding catastrophic breach counts of status_quo while reducing blanket over-provisioning relative to paranoid.
+
+What can be drawn at program level:
+- One-size-fits-all migration is suboptimal in heterogeneous fleets.
+- A capability-aware strategy is required to avoid forcing heavy crypto on low-resource endpoints.
+- Governance should combine:
+  - risk scoring (QRI),
+  - hardware feasibility checks,
+  - staged compliance targets,
+  - and device-specific algorithm mapping.
+
+============================================================
+3) Combined Cross-Tab Conclusion
+============================================================
+- Quantum Attack Sim answers "Why migrate": RSA-era assumptions fail under realistic quantum threat trajectories.
+- Migration Analysis answers "How to migrate": policy must be selective, staged, and hardware-aware to balance security, cost, and uptime.
+- Practical takeaway: adopt an adaptive PQC migration roadmap rather than either delaying migration (status quo) or forcing maximum-assurance crypto everywhere on day one.
