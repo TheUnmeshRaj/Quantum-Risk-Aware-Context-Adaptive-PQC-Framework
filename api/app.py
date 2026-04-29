@@ -302,7 +302,7 @@ async def explain_decision(device: DeviceProfileRequest) -> ExplainResponse:
     )
 
     steps = [
-        f"Step 1 — Risk Inputs: sensitivity={device.data_sensitivity}, "
+        f"Step 1 - Risk Inputs: sensitivity={device.data_sensitivity}, "
         f"exposure={device.exposure_level}, lifetime={device.data_lifetime_yrs}yrs, "
         f"threat_window={device.threat_window}, adversary='{device.adversary}'.",
 
@@ -323,16 +323,16 @@ async def explain_decision(device: DeviceProfileRequest) -> ExplainResponse:
         f"Step 5 — Constraint Filtering: {len(decision.rejected)} algorithm(s) eliminated "
         f"by hardware constraints (RAM / FPU checks).",
 
-        f"Step 6 — Multi-Factor Scoring: remaining candidates scored on "
+        f"Step 6 - Multi-Factor Scoring: remaining candidates scored on "
         f"security_fit (60%), ram_fit (25%), bandwidth_fit (15%). "
-        f"Under-level candidates receive a 0.3× penalty.",
+        f"Under-level candidates receive a 0.3x penalty.",
 
-        f"Step 7 — Selection: '{decision.algorithm_key}' scored {decision.score:.4f} — "
+        f"Step 7 - Selection: '{decision.algorithm_key}' scored {decision.score:.4f} - "
         f"highest composite score among feasible candidates.",
 
-        f"Step 8 — Gap Check: achieved NIST L{decision.achieved_level} vs required "
-        f"L{decision.required_level:.2f} → gap = {decision.security_gap:.2f} "
-        + ("(WARNING: security gap exists)" if decision.security_gap > 0 else "(no gap — fully compliant)."),
+        f"Step 8 - Gap Check: achieved NIST L{decision.achieved_level} vs required "
+        f"L{decision.required_level:.2f} -> gap = {decision.security_gap:.2f} "
+        + ("(WARNING: security gap exists)" if decision.security_gap > 0 else "(no gap - fully compliant)."),
     ]
 
     return ExplainResponse(

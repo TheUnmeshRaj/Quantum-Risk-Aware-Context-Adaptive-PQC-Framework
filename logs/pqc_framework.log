@@ -47,3 +47,49 @@
 2026-04-30 01:30:18 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
 2026-04-30 01:30:18 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
 2026-04-30 01:30:18 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.50 ms
+2026-04-30 01:30:55 | INFO     | api.app                          | POST /analyze — device: Hospital Patient Records DB
+2026-04-30 01:30:55 | INFO     | core.risk_engine                 | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.38 ms
+2026-04-30 01:30:55 | INFO     | api.app                          | POST /simulate — 2 devices
+2026-04-30 01:30:55 | INFO     | simulation.evaluator             | Starting fleet evaluation: 2 devices
+2026-04-30 01:30:55 | INFO     | core.risk_engine                 | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.60 ms
+2026-04-30 01:30:55 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.42 ms
+2026-04-30 01:30:55 | INFO     | simulation.evaluator             | Fleet evaluation complete: avg_qri=73.5, critical=1, total_ms=2.3
+2026-04-30 01:30:55 | INFO     | core.risk_engine                 | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.43 ms
+2026-04-30 01:30:55 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.36 ms
+2026-04-30 01:30:55 | INFO     | api.app                          | POST /explain — device: IoT Temperature Sensor
+2026-04-30 01:30:55 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-04-30 01:30:55 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.48 ms
+2026-04-30 01:31:22 | INFO     | api.app                          | POST /analyze — device: Hospital Patient Records DB
+2026-04-30 01:31:22 | INFO     | core.risk_engine                 | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.64 ms
+2026-04-30 01:31:22 | INFO     | api.app                          | POST /simulate — 2 devices
+2026-04-30 01:31:22 | INFO     | simulation.evaluator             | Starting fleet evaluation: 2 devices
+2026-04-30 01:31:22 | INFO     | core.risk_engine                 | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.77 ms
+2026-04-30 01:31:22 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.34 ms
+2026-04-30 01:31:22 | INFO     | simulation.evaluator             | Fleet evaluation complete: avg_qri=73.5, critical=1, total_ms=2.5
+2026-04-30 01:31:22 | INFO     | core.risk_engine                 | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.41 ms
+2026-04-30 01:31:22 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.41 ms
+2026-04-30 01:31:22 | INFO     | api.app                          | POST /explain — device: IoT Temperature Sensor
+2026-04-30 01:31:22 | INFO     | core.risk_engine                 | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-04-30 01:31:22 | INFO     | core.decision_engine             | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.42 ms
