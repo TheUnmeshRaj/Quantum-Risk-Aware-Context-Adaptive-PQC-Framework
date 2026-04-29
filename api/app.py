@@ -308,17 +308,17 @@ async def explain_decision(device: DeviceProfileRequest) -> ExplainResponse:
 
         f"Step 2 — Hardware Profile: RAM={device.hardware.ram_kb:,} KB, "
         f"CPU='{device.hardware.cpu}', FPU={'yes' if device.hardware.has_fpu else 'no'}, "
-        f"Bandwidth={device.hardware.bandwidth_kbps:,} kbps → "
+        f"Bandwidth={device.hardware.bandwidth_kbps:,} kbps -> "
         f"Capability score = {cap:.2f} / 10.",
 
-        f"Step 3 — QRI Computation: weighted sum of 5 factors → raw={qri_out['raw_score']}, "
-        f"HNDL amplifier={'fired' if qri_out['amplified'] else 'not triggered'} → "
+        f"Step 3 — QRI Computation: weighted sum of 5 factors -> raw={qri_out['raw_score']}, "
+        f"HNDL amplifier={'fired' if qri_out['amplified'] else 'not triggered'} -> "
         f"QRI = {qri} ({qri_out['qri_tier']}).",
 
         f"Step 4 — Required NIST Level: base={qri/20:.2f} from QRI, "
         f"lifetime bump={'yes' if device.data_lifetime_yrs > 10 else 'no'}, "
         f"adversary bump ({'nation_state +1.5' if device.adversary == 'nation_state' else 'medium +0.5' if device.adversary == 'medium' else 'low +0'}) "
-        f"→ required = L{decision.required_level:.2f}.",
+        f"-> required = L{decision.required_level:.2f}.",
 
         f"Step 5 — Constraint Filtering: {len(decision.rejected)} algorithm(s) eliminated "
         f"by hardware constraints (RAM / FPU checks).",
