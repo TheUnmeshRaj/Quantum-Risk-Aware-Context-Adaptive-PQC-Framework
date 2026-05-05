@@ -93,6 +93,8 @@ export default function AlgorithmsPage() {
               background: "var(--color-ink-2)",
               border: "1px solid var(--color-rule)",
               borderBottom: "none",
+              minWidth: "700px",
+              overflowX: "auto",
             }}
           >
             {["ALGORITHM", "LEVEL", "LATENCY", "MIN RAM", "USE CASE"].map((h) => (
@@ -101,7 +103,7 @@ export default function AlgorithmsPage() {
           </div>
 
           {/* Rows */}
-          <div style={{ border: "1px solid var(--color-rule)" }}>
+          <div style={{ border: "1px solid var(--color-rule)", overflowX: "auto" }}>
             {ALGORITHMS.map((a) => (
               <div
                 key={a.key}
@@ -109,6 +111,7 @@ export default function AlgorithmsPage() {
                   display: "grid",
                   gridTemplateColumns: "2fr 80px 80px 80px 1fr",
                   borderBottom: "1px solid var(--color-rule-dim)",
+                  minWidth: "700px",
                 }}
               >
                 {/* Identity */}

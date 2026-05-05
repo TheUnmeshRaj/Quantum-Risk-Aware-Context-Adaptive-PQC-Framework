@@ -134,7 +134,7 @@ export function FleetContent() {
 
       {/* ── Fleet table ── */}
       {result && (
-        <div className="fade-in" style={{ border: "1px solid var(--color-rule)" }}>
+        <div className="fade-in" style={{ border: "1px solid var(--color-rule)", overflowX: "auto" }}>
           {/* Header */}
           <div
             style={{
@@ -143,6 +143,7 @@ export function FleetContent() {
               padding: "8px 16px",
               background: "var(--color-ink-2)",
               borderBottom: "1px solid var(--color-rule)",
+              minWidth: "600px",
             }}
           >
             {["DEVICE", "QRI", "ALGORITHM", "NIST", "COMPLIANCE", "TIME"].map((h) => (
@@ -165,6 +166,7 @@ export function FleetContent() {
                   borderLeft: `2px solid ${tierColor(r.qri_tier)}`,
                   alignItems: "center",
                   transition: "background var(--fast) var(--ease)",
+                  minWidth: "600px",
                 }}
               >
                 <div>

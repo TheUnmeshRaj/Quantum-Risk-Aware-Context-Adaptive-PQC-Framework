@@ -139,7 +139,7 @@ export function OverviewContent() {
           <div className="label" style={{ marginBottom: 12 }}>DEVICE ASSIGNMENTS</div>
           <div
             className="fade-in"
-            style={{ border: "1px solid var(--color-rule)" }}
+            style={{ border: "1px solid var(--color-rule)", overflowX: "auto" }}
           >
             {/* Header */}
             <div
@@ -151,7 +151,7 @@ export function OverviewContent() {
                 borderBottom: "1px solid var(--color-rule)",
                 background: "var(--color-ink-2)",
                 fontSize: "12px",
-                overflowX: "auto",
+                minWidth: "600px",
               }}
             >
               {["DEVICE", "QRI", "ALGORITHM", "LEVEL", "NIST%", "TIME"].map((h) => (
@@ -172,6 +172,7 @@ export function OverviewContent() {
                   borderLeft: `2px solid ${tierColor(r.qri_tier)}`,
                   alignItems: "center",
                   transition: "background var(--fast) var(--ease)",
+                  minWidth: "600px",
                 }}
               >
                 <div>
