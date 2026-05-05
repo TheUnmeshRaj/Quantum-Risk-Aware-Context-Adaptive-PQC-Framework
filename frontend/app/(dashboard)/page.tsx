@@ -6,7 +6,7 @@ export default function OverviewPage() {
   return (
     <>
       <Topbar title="Overview" sub="PQC Framework Status" />
-      <main style={{ padding: 24, flex: 1 }}>
+      <main style={{ padding: "1rem", flex: 1 }}>
         <OverviewContent />
       </main>
     </>

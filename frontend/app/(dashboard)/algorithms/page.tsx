@@ -81,7 +81,7 @@ export default function AlgorithmsPage() {
   return (
     <>
       <Topbar title="Algorithms" sub="NIST FIPS 203 / 204 / 205 — full catalogue" />
-      <main style={{ padding: 24, flex: 1 }}>
+      <main style={{ padding: "1rem", flex: 1 }}>
         <div style={{ maxWidth: 1100 }}>
 
           {/* Table header */}

@@ -8,6 +8,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   title: "Unysis — PQC Decision Framework",
   description: "Quantum Risk-Aware Context-Adaptive Post-Quantum Cryptographic Decision Platform",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

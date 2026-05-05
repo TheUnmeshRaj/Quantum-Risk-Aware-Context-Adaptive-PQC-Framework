@@ -6,7 +6,7 @@ export default function FleetPage() {
   return (
     <>
       <Topbar title="Fleet" sub="Batch device evaluation · /simulate" />
-      <main style={{ padding: 24, flex: 1 }}>
+      <main style={{ padding: "1rem", flex: 1 }}>
         <FleetContent />
       </main>
     </>

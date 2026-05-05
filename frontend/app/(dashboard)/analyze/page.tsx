@@ -6,7 +6,7 @@ export default function AnalyzePage() {
   return (
     <>
       <Topbar title="Analyze" sub="Single device QRI + algorithm selection" />
-      <main style={{ padding: 24, flex: 1 }}>
+      <main style={{ padding: "1rem", flex: 1 }}>
         <AnalyzeContent />
       </main>
     </>

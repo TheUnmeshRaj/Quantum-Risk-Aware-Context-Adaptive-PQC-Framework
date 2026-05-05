@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useMobileMenu } from "./DashboardShell";
 
 const NAV = [
   { href: "/",           label: "Overview"   },
@@ -16,22 +17,32 @@ const NAV = [
 type SidebarProps = {
   collapsed?: boolean;
   onToggle?: () => void;
+  isMobileDrawer?: boolean;
 };
 
-export function Sidebar({ collapsed: collapsedProp, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed: collapsedProp, onToggle, isMobileDrawer }: SidebarProps) {
   const path = usePathname();
   const [internalCollapsed, setInternalCollapsed] = useState(false);
+  const { setMobileMenuOpen } = useMobileMenu();
   const isControlled = typeof collapsedProp === "boolean";
   const collapsed = isControlled ? collapsedProp! : internalCollapsed;
   const toggle = () => {
     if (isControlled) onToggle && onToggle();
     else setInternalCollapsed((c) => !c);
   };
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <aside
-      style={{ width: collapsed ? 64 : 220 }}
+      style={{
+        width: collapsed ? 64 : 220,
+        position: isMobileDrawer ? "absolute" : "fixed",
+      }}
       className={`
-        fixed left-0 top-0 bottom-0 z-20
+        left-0 top-0 bottom-0 z-20
         surface-1 rule-r
         flex flex-col
         select-none
@@ -63,6 +74,7 @@ export function Sidebar({ collapsed: collapsedProp, onToggle }: SidebarProps) {
             <Link
               key={href}
               href={href}
+              onClick={handleNavClick}
               className={`
                 block px-4 py-2
                 t-12 transition-colors

@@ -245,3 +245,37 @@ select:focus, input:focus {
 button { cursor: pointer; }
 
 option { background: var(--color-ink-1); color: var(--color-fg-0); }
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE — mobile-first adjustments
+   ════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  html {
+    font-size: 12px;
+  }
+
+  body {
+    font-size: var(--text-12);
+  }
+
+  @layer utilities {
+    .label {
+      font-size: 9px;
+    }
+
+    .value {
+      font-size: var(--text-16);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  @layer utilities {
+    /* Stack grids on tablet/mobile */
+    @supports (display: grid) {
+      .responsive-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  }
+}

@@ -36,7 +36,7 @@ export function OverviewContent() {
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", maxWidth: 1200 }}>
+    <div style={{ display: "flex", flexDirection: "column", maxWidth: 1200, width: "100%" }}>
 
       {/* ── API Status ── */}
       <section style={{ borderBottom: "1px solid var(--color-rule)", paddingBottom: 24, marginBottom: 24 }}>
@@ -46,7 +46,7 @@ export function OverviewContent() {
             className="fade-in"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4, auto)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
               gap: 0,
               border: "1px solid var(--color-rule)",
               width: "fit-content",
@@ -121,7 +121,7 @@ export function OverviewContent() {
             className="fade-in"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
               border: "1px solid var(--color-rule)",
             }}
           >
@@ -145,11 +145,13 @@ export function OverviewContent() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "2fr 80px 2fr 60px 60px 80px",
+                gridTemplateColumns: "minmax(150px, 2fr) 80px minmax(150px, 2fr) 60px 60px 80px",
                 gap: 0,
                 padding: "8px 16px",
                 borderBottom: "1px solid var(--color-rule)",
                 background: "var(--color-ink-2)",
+                fontSize: "12px",
+                overflowX: "auto",
               }}
             >
               {["DEVICE", "QRI", "ALGORITHM", "LEVEL", "NIST%", "TIME"].map((h) => (
@@ -205,7 +207,7 @@ export function OverviewContent() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             border: "1px solid var(--color-rule)",
           }}
         >
