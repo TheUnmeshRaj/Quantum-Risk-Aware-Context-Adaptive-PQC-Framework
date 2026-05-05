@@ -94,7 +94,7 @@ export function OverviewContent() {
                 color: "var(--color-red)",
               }}
             >
-              OFFLINE — run: uvicorn backend.api.app:app --port 8000
+              BACKEND OFFLINE 
             </span>
           </div>
         ) : (

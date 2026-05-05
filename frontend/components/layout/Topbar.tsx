@@ -83,7 +83,7 @@ export function Topbar({ title, sub }: { title: string; sub?: string }) {
           )}
 
           <a
-            href="http://localhost:8000/docs"
+            href="/docs.pdf"
             target="_blank"
             rel="noopener"
             className="focus-ring hidden sm:inline-block"
