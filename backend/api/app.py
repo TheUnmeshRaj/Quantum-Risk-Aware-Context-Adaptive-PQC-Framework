@@ -75,7 +75,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost", "http://localhost:3000", "http://localhost:8501"],
+    allow_origins=["http://localhost", "http://localhost:3000", "http://localhost:8501", "https://quantum-risk-aware-context-adaptive.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
