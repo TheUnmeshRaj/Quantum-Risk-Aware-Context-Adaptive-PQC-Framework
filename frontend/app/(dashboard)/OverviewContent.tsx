@@ -11,19 +11,19 @@ import { Bar } from "@/components/ui/Bar";
 import type { FleetMetrics, HealthResponse, AnalyzeResponse } from "@/lib/types";
 
 const ALGO_CATALOGUE = [
-  { key: "kyber512_constrained",         label: "Kyber-512 + Dilithium-2",             level: 1, family: "Lattice" },
-  { key: "hybrid_kyber512",              label: "Hybrid RSA-2048 + Kyber-512",          level: 1, family: "Hybrid" },
-  { key: "kyber768_dilithium3",          label: "Kyber-768 + Dilithium-3",              level: 3, family: "Lattice" },
-  { key: "kyber768_falcon512",           label: "Kyber-768 + FALCON-512",               level: 3, family: "Lattice" },
-  { key: "kyber1024_dilithium5",         label: "Kyber-1024 + Dilithium-5",             level: 5, family: "Lattice" },
-  { key: "kyber1024_dilithium5_sphincs", label: "Kyber-1024 + Dilithium-5 + SPHINCS+", level: 5, family: "Hash"    },
+  { key: "kyber512_constrained", label: "Kyber-512 + Dilithium-2", level: 1, family: "Lattice" },
+  { key: "hybrid_kyber512", label: "Hybrid RSA-2048 + Kyber-512", level: 1, family: "Hybrid" },
+  { key: "kyber768_dilithium3", label: "Kyber-768 + Dilithium-3", level: 3, family: "Lattice" },
+  { key: "kyber768_falcon512", label: "Kyber-768 + FALCON-512", level: 3, family: "Lattice" },
+  { key: "kyber1024_dilithium5", label: "Kyber-1024 + Dilithium-5", level: 5, family: "Lattice" },
+  { key: "kyber1024_dilithium5_sphincs", label: "Kyber-1024 + Dilithium-5 + SPHINCS+", level: 5, family: "Hash" },
 ];
 
 export function OverviewContent() {
-  const [health,  setHealth]  = useState<HealthResponse | null>(null);
-  const [fleet,   setFleet]   = useState<{ metrics: FleetMetrics; results: AnalyzeResponse[] } | null>(null);
+  const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [fleet, setFleet] = useState<{ metrics: FleetMetrics; results: AnalyzeResponse[] } | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error,   setError]   = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([api.health(), api.simulate(DEVICE_PROFILES)])
@@ -53,10 +53,10 @@ export function OverviewContent() {
             }}
           >
             {[
-              ["SERVICE",  health.service],
-              ["VERSION",  `v${health.version}`],
-              ["UPTIME",   `${Math.floor(health.uptime_sec)}s`],
-              ["STATUS",   "HEALTHY"],
+              ["SERVICE", health.service],
+              ["VERSION", `v${health.version}`],
+              ["UPTIME", `${Math.floor(health.uptime_sec)}s`],
+              ["STATUS", (health.status || "unknown").toString().toUpperCase()],
             ].map(([label, val], i) => (
               <div
                 key={label}
@@ -71,7 +71,10 @@ export function OverviewContent() {
                     fontFamily: "var(--font-mono)",
                     fontSize: "var(--text-13)",
                     fontWeight: 600,
-                    color: label === "STATUS" ? "var(--color-green)" : "var(--color-fg-0)",
+                    color:
+                      label === "STATUS"
+                        ? (health.status === "healthy" ? "var(--color-green)" : "var(--color-red)")
+                        : "var(--color-fg-0)",
                   }}
                 >
                   {val}
@@ -94,7 +97,8 @@ export function OverviewContent() {
                 color: "var(--color-red)",
               }}
             >
-              BACKEND OFFLINE 
+              BACKEND OFFLINE
+              {error ? ` — ${error}` : ""}
             </span>
           </div>
         ) : (
@@ -125,9 +129,9 @@ export function OverviewContent() {
               border: "1px solid var(--color-rule)",
             }}
           >
-            <Stat label="Devices"    value={fleet.metrics.device_count}           ruled />
-            <Stat label="Avg QRI"    value={fleet.metrics.avg_qri}                sub={`max ${fleet.metrics.max_qri}`} />
-            <Stat label="Critical"   value={fleet.metrics.critical_count}         sub={`${fleet.metrics.high_count} HIGH`} color={fleet.metrics.critical_count > 0 ? "var(--color-red)" : undefined} />
+            <Stat label="Devices" value={fleet.metrics.device_count} ruled />
+            <Stat label="Avg QRI" value={fleet.metrics.avg_qri} sub={`max ${fleet.metrics.max_qri}`} />
+            <Stat label="Critical" value={fleet.metrics.critical_count} sub={`${fleet.metrics.high_count} HIGH`} color={fleet.metrics.critical_count > 0 ? "var(--color-red)" : undefined} />
             <Stat label="Compliance" value={`${fleet.metrics.avg_compliance_score}%`} />
           </div>
         ) : null}
