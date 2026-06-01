@@ -49,68 +49,23 @@ export function DiscoverContent() {
     setProgress(0);
     setLogs([]);
     setDevices([]);
-    addLog("⚡ INITIALIZING AUTOMATED DEVICE DISCOVERY...");
-    addLog(`🔍 SCOPE DEFINED: [${subnets}]`);
-    addLog(`⚙️ SERVICE SCAN SPEED: [${scanSpeed.toUpperCase()}]`);
+    addLog("INITIALIZING AUTOMATED DEVICE DISCOVERY...");
+    addLog(`SCOPE DEFINED: [${subnets}]`);
+    addLog(`SERVICE SCAN SPEED: [${scanSpeed.toUpperCase()}]`);
 
     const intervalTime = scanSpeed === "turbo" ? 500 : 1200;
 
-    // We will discover 4 device profiles sequentially (incorporating default and custom ones)
-    const scanTargets = [
-      {
-        ip: "192.168.1.15",
-        mac: "5C:A6:2D:4B:11:0C",
-        profile: profiles[0] || {
-          name: "Smart Thermostat",
-          data_sensitivity: 3,
-          exposure_level: 2,
-          data_lifetime_yrs: 8,
-          threat_window: 4,
-          adversary: "low" as const,
-          hardware: { ram_kb: 512, cpu: "ARM Cortex-M4", has_fpu: true, bandwidth_kbps: 100 }
-        }
-      },
-      {
-        ip: "10.0.0.42",
-        mac: "D8:43:0E:8F:2C:14",
-        profile: profiles[1] || {
-          name: "Medical Sensor",
-          data_sensitivity: 9,
-          exposure_level: 1,
-          data_lifetime_yrs: 15,
-          threat_window: 9,
-          adversary: "nation_state" as const,
-          hardware: { ram_kb: 256, cpu: "ARM Cortex-M0", has_fpu: false, bandwidth_kbps: 50 }
-        }
-      },
-      {
-        ip: "192.168.1.88",
-        mac: "00:1A:2B:3C:4D:5E",
-        profile: profiles[2] || {
-          name: "Industrial Controller",
-          data_sensitivity: 8,
-          exposure_level: 5,
-          data_lifetime_yrs: 20,
-          threat_window: 7,
-          adversary: "nation_state" as const,
-          hardware: { ram_kb: 2048, cpu: "ARM Cortex-M7", has_fpu: true, bandwidth_kbps: 1000 }
-        }
-      },
-      // Discover a custom profile if created, or a default one
-      {
-        ip: "10.0.0.119",
-        mac: "F0:E1:D2:C3:B4:A5",
-        profile: profiles[profiles.length - 1] || {
-          name: "Smart Camera",
-          data_sensitivity: 5,
-          exposure_level: 8,
-          data_lifetime_yrs: 5,
-          threat_window: 5,
-          adversary: "medium" as const,
-          hardware: { ram_kb: 1024, cpu: "ARM Cortex-A53", has_fpu: true, bandwidth_kbps: 5000 }
-        }
-      }
-    ];
+    let scanTargets: any[] = [];
+    try {
+      addLog("📡 CONNECTING TO AUTOMATION DAEMON & DEPLOYING SCANNER...");
+      const res = await api.discover(subnets, scanSpeed);
+      scanTargets = res.devices || [];
+      addLog(`📡 DAEMON ACQUIRED: Scanning queue initialized with ${scanTargets.length} potential hosts.`);
+    } catch (err) {
+      addLog(`❌ NETWORK ERROR: Failed to reach discovery daemon: ${err instanceof Error ? err.message : String(err)}`);
+      setStatus("idle");
+      return;
+    }
 
     let currentStep = 0;
     setProgress(5);
@@ -118,61 +73,48 @@ export function DiscoverContent() {
     const runScanStep = async () => {
       if (currentStep >= scanTargets.length) {
         setProgress(100);
-        addLog("✅ DISCOVERY COMPLETED.");
-        addLog(`📊 INFERENCE RESULTS COMPILED: ${scanTargets.length} ACTIVE HOSTS IDENTIFIED.`);
+        addLog("DISCOVERY COMPLETED.");
+        addLog(`INFERENCE RESULTS COMPILED: ${scanTargets.length} ACTIVE HOSTS IDENTIFIED.`);
         setStatus("completed");
         return;
       }
 
       const target = scanTargets[currentStep];
-      addLog(`📡 SCANNING SUBNET SEGMENT AT ${target.ip.substring(0, target.ip.lastIndexOf('.'))}.X ...`);
-      
-      // Simulate ping scan delay
+      const analysis = target.analysis;
+      addLog(`SCANNING SUBNET SEGMENT AT ${target.ip.substring(0, target.ip.lastIndexOf('.'))}.X ...`);
+
+      // Simulate network sweep propagation latency
       await new Promise(resolve => setTimeout(resolve, intervalTime * 0.4));
-      
-      addLog(`✨ ACTIVE HOST DISCOVERED AT ${target.ip} [MAC: ${target.mac}]`);
-      addLog(`💻 QUERYING FIRMWARE CHARACTERISTICS FOR Hostname: "${target.profile.name}"...`);
-      addLog(`🛠️ HARDWARE DETAILS DETECTED: [CPU: ${target.profile.hardware.cpu}] [RAM: ${target.profile.hardware.ram_kb}KB]`);
 
-      // Simulate backend risk adaptive inference call
+      addLog(`ACTIVE HOST DISCOVERED AT ${target.ip} [MAC: ${target.mac}]`);
+      addLog(`QUERYING FIRMWARE CHARACTERISTICS FOR Hostname: "${analysis.device}"...`);
+      addLog(`HARDWARE DETAILS DETECTED: [CPU: ${analysis.constraints.cpu}] [RAM: ${analysis.constraints.ram_kb}KB]`);
+
+      // Simulate PQC math inference propagation
       await new Promise(resolve => setTimeout(resolve, intervalTime * 0.3));
-      addLog(`🧠 COMMENCING REAL-TIME RISK ADAPTIVE POST-QUANTUM RISK INFERENCE...`);
+      addLog(`COMMENCING REAL-TIME RISK ADAPTIVE POST-QUANTUM RISK INFERENCE...`);
 
-      try {
-        const payload: DeviceProfileRequest = {
-          ...target.profile,
-          hardware: {
-            ...target.profile.hardware,
-            ram_kb: Math.min(target.profile.hardware.ram_kb, 2_000_000)
-          }
-        };
+      addLog(`INFERENCE COMPLETE FOR ${target.ip}: QRI ${analysis.qri} (${analysis.qri_tier.toUpperCase()}) -> RECOMMEND ${analysis.selected_algorithm}`);
 
-        const result: AnalyzeResponse = await api.analyze(payload);
-        
-        addLog(`🎯 INFERENCE COMPLETE FOR ${target.ip}: QRI ${result.qri} (${result.qri_tier.toUpperCase()}) -> RECOMMEND ${result.selected_algorithm}`);
+      const newDevice: DiscoveredDevice = {
+        ip: target.ip,
+        mac: target.mac,
+        name: analysis.device,
+        cpu: analysis.constraints.cpu,
+        ram: `${analysis.constraints.ram_kb} KB`,
+        bandwidth: `${analysis.constraints.bandwidth_kbps} kbps`,
+        hasFpu: analysis.constraints.has_fpu,
+        qri: analysis.qri,
+        tier: analysis.qri_tier,
+        algorithm: analysis.selected_algorithm,
+        processingTime: analysis.processing_time_ms
+      };
 
-        const newDevice: DiscoveredDevice = {
-          ip: target.ip,
-          mac: target.mac,
-          name: target.profile.name,
-          cpu: target.profile.hardware.cpu,
-          ram: `${target.profile.hardware.ram_kb} KB`,
-          bandwidth: `${target.profile.hardware.bandwidth_kbps} kbps`,
-          hasFpu: target.profile.hardware.has_fpu,
-          qri: result.qri,
-          tier: result.qri_tier,
-          algorithm: result.selected_algorithm,
-          processingTime: result.processing_time_ms
-        };
-
-        setDevices((prev) => [...prev, newDevice]);
-      } catch (err) {
-        addLog(`❌ ERROR RUNNING INFERENCE: ${err instanceof Error ? err.message : String(err)}`);
-      }
+      setDevices((prev) => [...prev, newDevice]);
 
       currentStep++;
       setProgress(Math.round((currentStep / scanTargets.length) * 90) + 5);
-      
+
       // Wait before scanning the next target
       setTimeout(runScanStep, intervalTime * 0.5);
     };

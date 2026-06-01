@@ -189,3 +189,26 @@ class HealthResponse(BaseModel):
     service:    str
     version:    str
     uptime_sec: float
+
+
+# ═══════════════════════════════════════════════════════════
+# DISCOVERY SCHEMAS
+# ═══════════════════════════════════════════════════════════
+
+class DiscoverRequest(BaseModel):
+    """POST /discover request body."""
+    subnets: Optional[str] = Field("192.168.1.0/24", description="IP subnets to scan")
+    speed:   Optional[str] = Field("standard", description="standard | turbo")
+
+
+class DiscoveredDevice(BaseModel):
+    """Discovered host details and full QRI analysis response."""
+    ip:       str
+    mac:      str
+    analysis: AnalyzeResponse
+
+
+class DiscoverResponse(BaseModel):
+    """POST /discover response containing all active network hosts."""
+    devices: list[DiscoveredDevice]
+

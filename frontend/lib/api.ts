@@ -43,4 +43,10 @@ export const api = {
       method: "POST",
       body: JSON.stringify(device),
     }),
+
+  discover: (subnets?: string, speed?: string) =>
+    apiFetch<{ devices: any[] }>("/discover", {
+      method: "POST",
+      body: JSON.stringify({ subnets, speed }),
+    }),
 };

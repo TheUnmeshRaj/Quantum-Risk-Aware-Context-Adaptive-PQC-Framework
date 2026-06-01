@@ -302,3 +302,1013 @@
 2026-05-14 14:35:21 | INFO     | backend.api.app                  | ============================================================
 2026-05-14 14:35:21 | INFO     | backend.api.app                  |   Unysis PQC Framework API  —  starting up
 2026-05-14 14:35:21 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 21:57:55 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 21:57:55 | INFO     | backend.api.app                  |   Unysis PQC Framework API  —  starting up
+2026-06-01 21:57:55 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 21:58:19 | INFO     | backend.api.app                  | POST /simulate — 6 devices
+2026-06-01 21:58:19 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 6 devices
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 1.16 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.92 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.70 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 1.70 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 1.69 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 1.07 ms
+2026-06-01 21:58:19 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=65.2, critical=2, total_ms=21.2
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.50 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.83 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.81 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.83 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.80 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 1.32 ms
+2026-06-01 21:58:19 | INFO     | backend.api.app                  | POST /simulate — 6 devices
+2026-06-01 21:58:19 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 6 devices
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.69 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 1.77 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.72 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.90 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.79 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.81 ms
+2026-06-01 21:58:19 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=65.2, critical=2, total_ms=14.0
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.91 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.69 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.84 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.82 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 1.58 ms
+2026-06-01 21:58:19 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 21:58:19 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.78 ms
+2026-06-01 21:58:49 | INFO     | backend.api.app                  | POST /analyze — device: Camera
+2026-06-01 21:58:49 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 21:58:49 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 21:58:49 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 2.89 ms
+2026-06-01 22:03:01 | INFO     | backend.api.app                  | POST /simulate — 19 devices
+2026-06-01 22:03:01 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 19 devices
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.65 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 0.48 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 0.50 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 1.12 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 1.34 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.69 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.63 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 0.68 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.66 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 1.92 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 0.84 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 2.98 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.79 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.73 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 0.64 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 0.95 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 1.00 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 1.37 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 1.03 ms
+2026-06-01 22:03:01 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=32.2, critical=0, total_ms=51.1
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.89 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 1.23 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 1.01 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.91 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 0.78 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.78 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 1.02 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 1.03 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.81 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 1.30 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 1.17 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.69 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.68 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.63 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 0.90 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 0.62 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 0.84 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 0.95 ms
+2026-06-01 22:03:01 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:03:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.61 ms
+2026-06-01 22:03:35 | INFO     | backend.api.app                  | POST /analyze — device: IoT Temperature Sensor
+2026-06-01 22:03:35 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:03:35 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:03:35 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.58 ms
+2026-06-01 22:03:57 | INFO     | backend.api.app                  | POST /analyze — device: Edge Camera
+2026-06-01 22:03:57 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:03:57 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:03:57 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.55 ms
+2026-06-01 22:04:07 | INFO     | backend.api.app                  | POST /simulate — 19 devices
+2026-06-01 22:04:07 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 19 devices
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.48 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 0.51 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 1.00 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.48 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 0.49 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.87 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.85 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 0.71 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.67 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 0.65 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 0.65 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.84 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.77 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.85 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 0.70 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 1.32 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 1.13 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 1.78 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.62 ms
+2026-06-01 22:04:07 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=32.2, critical=0, total_ms=43.7
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.76 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 0.62 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 0.78 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.63 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 0.62 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.64 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.58 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 0.65 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.74 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 0.66 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 0.92 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.90 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.79 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.69 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 0.97 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 0.65 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 0.95 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 0.85 ms
+2026-06-01 22:04:07 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:04:07 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.68 ms
+2026-06-01 22:11:53 | INFO     | backend.api.app                  | POST /simulate — 6 devices
+2026-06-01 22:11:53 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 6 devices
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 2.75 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 1.35 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 2.11 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 2.38 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 2.94 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 2.64 ms
+2026-06-01 22:11:53 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=65.2, critical=2, total_ms=36.3
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 5.76 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 1.37 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 1.87 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.86 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 1.09 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 1.37 ms
+2026-06-01 22:11:53 | INFO     | backend.api.app                  | POST /simulate — 8 devices
+2026-06-01 22:11:53 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 8 devices
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.95 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 1.06 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 1.43 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 1.39 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.68 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.75 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.89 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.79 ms
+2026-06-01 22:11:53 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=66.0, critical=2, total_ms=22.2
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 1.07 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.77 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 1.09 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 1.02 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.84 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.86 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.79 ms
+2026-06-01 22:11:53 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:11:53 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.69 ms
+2026-06-01 22:14:54 | INFO     | backend.api.app                  | POST /simulate — 19 devices
+2026-06-01 22:14:54 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 19 devices
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.92 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 0.98 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 1.15 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.58 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 1.94 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.95 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.81 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 2.43 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.80 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 0.80 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 0.83 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.68 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:14:54 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.58 ms
+2026-06-01 22:14:54 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.69 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 0.49 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 0.66 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 0.45 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 0.52 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.77 ms
+2026-06-01 22:14:55 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=32.2, critical=0, total_ms=46.5
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.46 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 0.74 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 0.70 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.69 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 0.59 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.59 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.71 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 0.84 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.75 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 0.71 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 0.63 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.57 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.67 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.55 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 0.69 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 0.97 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 0.81 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 0.74 ms
+2026-06-01 22:14:55 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:14:55 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.61 ms
+2026-06-01 22:16:01 | INFO     | backend.api.app                  | POST /simulate — 6 devices
+2026-06-01 22:16:01 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 6 devices
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.93 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 1.07 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.51 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.80 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.82 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.71 ms
+2026-06-01 22:16:01 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=65.2, critical=2, total_ms=12.7
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 1.30 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.79 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.64 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.74 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.69 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.64 ms
+2026-06-01 22:16:01 | INFO     | backend.api.app                  | POST /simulate — 8 devices
+2026-06-01 22:16:01 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 8 devices
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.62 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.70 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.68 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.69 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.49 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.50 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.65 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.70 ms
+2026-06-01 22:16:01 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=66.0, critical=2, total_ms=14.0
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.58 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.58 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.62 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.81 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.66 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.71 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.70 ms
+2026-06-01 22:16:01 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:16:01 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.64 ms
+2026-06-01 22:16:16 | INFO     | backend.api.app                  | POST /simulate — 19 devices
+2026-06-01 22:16:16 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 19 devices
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 0.63 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 0.63 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 2.50 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.64 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 0.97 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.61 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.67 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 0.61 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 0.82 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 1.06 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 0.74 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.70 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 0.56 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 0.52 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 1.68 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 0.90 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 1.85 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 0.73 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.78 ms
+2026-06-01 22:16:16 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=32.2, critical=0, total_ms=45.8
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 27.8 (LOW) | sensitivity=2.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=4.2
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat (QRI=27.8)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.9868, level=3) for 'Smart Thermostat' in 13.39 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 46.6 (MODERATE) | sensitivity=3.0 exposure=0.0 lifetime=7.5 threat=5.0 cap=1.1
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Medical Sensor (QRI=46.6)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.2161, level=3) for 'Medical Sensor' in 4.78 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 47.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=10.0 threat=2.0 cap=4.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial Controller (QRI=47.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9520, level=5) for 'Industrial Controller' in 1.14 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 18.8 (LOW) | sensitivity=1.0 exposure=3.0 lifetime=1.5 threat=0.5 cap=3.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Watch (QRI=18.8)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8128, level=3) for 'Smart Watch' in 0.91 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 22.2 (LOW) | sensitivity=2.0 exposure=2.0 lifetime=2.5 threat=1.0 cap=5.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=22.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8332, level=3) for 'Camera' in 1.86 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 29.2 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=4.0 threat=1.0 cap=3.2
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Lock (QRI=29.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8752, level=3) for 'Smart Lock' in 0.60 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 36.0 (MODERATE) | sensitivity=2.0 exposure=2.0 lifetime=6.0 threat=2.0 cap=2.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Traffic Sensor (QRI=36.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8860, level=5) for 'Traffic Sensor' in 0.85 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 34.0 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=5.0 threat=3.0 cap=6.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Drone Controller (QRI=34.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.7540, level=5) for 'Drone Controller' in 1.63 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 38.8 (MODERATE) | sensitivity=2.0 exposure=1.0 lifetime=7.5 threat=2.0 cap=1.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Meter (QRI=38.8)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9028, level=5) for 'Smart Meter' in 1.39 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 26.2 (LOW) | sensitivity=3.0 exposure=2.0 lifetime=3.5 threat=1.0 cap=6.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Point-of-Sale Terminal (QRI=26.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8572, level=3) for 'Point-of-Sale Terminal' in 0.61 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=7.5 threat=5.0 cap=4.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Vehicle ECU (QRI=45.2)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9412, level=5) for 'Vehicle ECU' in 2.19 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 22.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=2.0 threat=1.0 cap=5.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Speaker (QRI=22.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8320, level=3) for 'Smart Speaker' in 0.97 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 24.4 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=4.0 threat=0.5 cap=1.1
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Environmental Sensor (QRI=24.4)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.7264, level=3) for 'Environmental Sensor' in 3.90 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 44.5 (MODERATE) | sensitivity=3.0 exposure=1.0 lifetime=10.0 threat=4.0 cap=9.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Factory Robot Controller (QRI=44.5)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=0.9664, level=5) for 'Factory Robot Controller' in 1.01 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 17.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=1.5 threat=0.5 cap=3.2
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Fitness Tracker (QRI=17.5)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_falcon512' (score=0.8056, level=3) for 'Fitness Tracker' in 1.78 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 54.0 (ELEVATED) | sensitivity=3.0 exposure=0.0 lifetime=10.0 threat=10.0 cap=10.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Satellite Telemetry Unit (QRI=54.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9700, level=5) for 'Satellite Telemetry Unit' in 3.07 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 28.0 (LOW) | sensitivity=2.0 exposure=3.0 lifetime=3.0 threat=1.0 cap=2.0
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Home Router (QRI=28.0)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8680, level=3) for 'Home Router' in 0.74 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 27.9 (LOW) | sensitivity=1.0 exposure=1.0 lifetime=5.0 threat=1.0 cap=1.1
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Agricultural Sensor (QRI=27.9)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2856, level=1) for 'Agricultural Sensor' in 1.07 ms
+2026-06-01 22:16:16 | INFO     | backend.core.risk_engine         | QRI computed: 22.5 (LOW) | sensitivity=1.0 exposure=2.0 lifetime=4.0 threat=1.0 cap=5.5
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Refrigerator (QRI=22.5)
+2026-06-01 22:16:16 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8344, level=3) for 'Smart Refrigerator' in 0.89 ms
+2026-06-01 22:20:51 | INFO     | backend.api.app                  | POST /analyze — device: IoT Temperature Sensor
+2026-06-01 22:20:51 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:20:51 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:20:51 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 2.36 ms
+2026-06-01 22:20:52 | INFO     | backend.api.app                  | POST /analyze — device: Developer Workstation
+2026-06-01 22:20:52 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:20:52 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:20:52 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.77 ms
+2026-06-01 22:20:54 | INFO     | backend.api.app                  | POST /analyze — device: Public API Server
+2026-06-01 22:20:54 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:20:54 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:20:54 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.77 ms
+2026-06-01 22:20:55 | INFO     | backend.api.app                  | POST /analyze — device: Edge Camera
+2026-06-01 22:20:55 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:20:55 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:20:55 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.62 ms
+2026-06-01 22:24:01 | INFO     | backend.api.app                  | POST /analyze — device: IoT Temperature Sensor
+2026-06-01 22:24:01 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:24:01 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:24:01 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.66 ms
+2026-06-01 22:24:01 | INFO     | backend.api.app                  | POST /analyze — device: Developer Workstation
+2026-06-01 22:24:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:24:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:24:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.52 ms
+2026-06-01 22:24:02 | INFO     | backend.api.app                  | POST /analyze — device: Public API Server
+2026-06-01 22:24:02 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:24:02 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:24:02 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 1.07 ms
+2026-06-01 22:24:03 | INFO     | backend.api.app                  | POST /analyze — device: Edge Camera
+2026-06-01 22:24:03 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:24:03 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:24:03 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.62 ms
+2026-06-01 22:24:26 | INFO     | backend.api.app                  | POST /analyze — device: IoT Temperature Sensor
+2026-06-01 22:24:26 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:24:26 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:24:26 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.60 ms
+2026-06-01 22:24:28 | INFO     | backend.api.app                  | POST /analyze — device: Developer Workstation
+2026-06-01 22:24:28 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:24:28 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:24:28 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.63 ms
+2026-06-01 22:24:29 | INFO     | backend.api.app                  | POST /analyze — device: Public API Server
+2026-06-01 22:24:29 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:24:29 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:24:29 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.99 ms
+2026-06-01 22:24:31 | INFO     | backend.api.app                  | POST /analyze — device: Edge Camera
+2026-06-01 22:24:31 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:24:31 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:24:31 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 1.06 ms
+2026-06-01 22:26:59 | INFO     | backend.api.app                  | POST /analyze — device: IoT Temperature Sensor
+2026-06-01 22:26:59 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:26:59 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:26:59 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.49 ms
+2026-06-01 22:27:01 | INFO     | backend.api.app                  | POST /analyze — device: Developer Workstation
+2026-06-01 22:27:01 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:27:01 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:27:01 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.85 ms
+2026-06-01 22:27:02 | INFO     | backend.api.app                  | POST /analyze — device: Public API Server
+2026-06-01 22:27:02 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:27:02 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:27:02 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.65 ms
+2026-06-01 22:27:04 | INFO     | backend.api.app                  | POST /analyze — device: Edge Camera
+2026-06-01 22:27:04 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:27:04 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:27:04 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 6.52 ms
+2026-06-01 22:27:11 | INFO     | backend.api.app                  | POST /analyze — device: IoT Temperature Sensor
+2026-06-01 22:27:11 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:27:11 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:27:11 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.44 ms
+2026-06-01 22:27:12 | INFO     | backend.api.app                  | POST /analyze — device: Developer Workstation
+2026-06-01 22:27:12 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:27:12 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:27:12 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.70 ms
+2026-06-01 22:27:13 | INFO     | backend.api.app                  | POST /analyze — device: Public API Server
+2026-06-01 22:27:13 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:27:13 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:27:13 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.59 ms
+2026-06-01 22:27:13 | INFO     | backend.api.app                  | POST /analyze — device: Edge Camera
+2026-06-01 22:27:13 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:27:13 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:27:13 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 1.56 ms
+2026-06-01 22:32:23 | INFO     | backend.api.app                  | POST /simulate — 6 devices
+2026-06-01 22:32:23 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 6 devices
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.56 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.54 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.60 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.73 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.84 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.62 ms
+2026-06-01 22:32:23 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=65.2, critical=2, total_ms=11.2
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.61 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 1.17 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.63 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.45 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.67 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.61 ms
+2026-06-01 22:32:23 | INFO     | backend.api.app                  | POST /simulate — 8 devices
+2026-06-01 22:32:23 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 8 devices
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.48 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.56 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.49 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.65 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.51 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.72 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.66 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.46 ms
+2026-06-01 22:32:23 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=66.0, critical=2, total_ms=13.5
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.66 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.73 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.50 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.88 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.56 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.96 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.75 ms
+2026-06-01 22:32:23 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:32:23 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.71 ms
+2026-06-01 22:34:09 | INFO     | backend.api.app                  | POST /simulate — 6 devices
+2026-06-01 22:34:09 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 6 devices
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.65 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.59 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.58 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.67 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.61 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 1.03 ms
+2026-06-01 22:34:09 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=65.2, critical=2, total_ms=11.1
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.68 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.82 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.65 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.93 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.60 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.62 ms
+2026-06-01 22:34:09 | INFO     | backend.api.app                  | POST /simulate — 8 devices
+2026-06-01 22:34:09 | INFO     | backend.simulation.evaluator     | Starting fleet evaluation: 8 devices
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.57 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.68 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.42 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.59 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.70 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 0.47 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.61 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.84 ms
+2026-06-01 22:34:09 | INFO     | backend.simulation.evaluator     | Fleet evaluation complete: avg_qri=66.0, critical=2, total_ms=13.7
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 50.9 (ELEVATED) | sensitivity=3.0 exposure=7.0 lifetime=5.0 threat=5.0 cap=1.1
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: IoT Temperature Sensor (QRI=50.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber512_constrained' (score=0.2266, level=1) for 'IoT Temperature Sensor' in 0.52 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 45.2 (MODERATE) | sensitivity=6.5 exposure=5.0 lifetime=2.5 threat=6.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Developer Workstation (QRI=45.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9112, level=3) for 'Developer Workstation' in 0.80 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 69.9 (ELEVATED) | sensitivity=7.0 exposure=9.0 lifetime=3.5 threat=7.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Public API Server (QRI=69.9)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Public API Server' in 0.73 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=9.5 exposure=5.0 lifetime=10.0 threat=9.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records DB (QRI=96.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records DB' in 0.70 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 88.2 (CRITICAL) | sensitivity=8.5 exposure=4.0 lifetime=10.0 threat=8.5 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Industrial PLC Controller (QRI=88.2)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Industrial PLC Controller' in 0.56 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 41.0 (MODERATE) | sensitivity=4.0 exposure=6.0 lifetime=4.0 threat=5.0 cap=10.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Home Hub (QRI=41.0)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8860, level=3) for 'Smart Home Hub' in 1.05 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 80.4 (HIGH) | sensitivity=10.0 exposure=5.0 lifetime=5.0 threat=5.0 cap=3.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Camera (QRI=80.4)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.9124, level=5) for 'Camera' in 0.57 ms
+2026-06-01 22:34:09 | INFO     | backend.core.risk_engine         | QRI computed: 56.7 (ELEVATED) | sensitivity=6.9 exposure=8.6 lifetime=5.0 threat=1.8 cap=3.0
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Running decision engine for: Edge Camera (QRI=56.7)
+2026-06-01 22:34:09 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5' (score=0.8896, level=5) for 'Edge Camera' in 0.76 ms
+2026-06-01 22:36:18 | INFO     | backend.api.app                  | Unysis PQC Framework API  —  shutting down
+2026-06-01 22:36:21 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 22:36:21 | INFO     | backend.api.app                  |   Unysis PQC Framework API  —  starting up
+2026-06-01 22:36:21 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 22:36:26 | INFO     | backend.api.app                  | Unysis PQC Framework API  —  shutting down
+2026-06-01 22:36:28 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 22:36:28 | INFO     | backend.api.app                  |   Unysis PQC Framework API  —  starting up
+2026-06-01 22:36:28 | INFO     | backend.api.app                  | ============================================================
+2026-06-01 22:36:44 | INFO     | backend.api.app                  | Unysis PQC Framework API  —  shutting down
