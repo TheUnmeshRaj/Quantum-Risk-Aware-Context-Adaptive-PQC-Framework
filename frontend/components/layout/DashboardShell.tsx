@@ -2,6 +2,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { Sidebar } from "./Sidebar";
 import { Topbar } from "./Topbar";
+import { ProfilesProvider } from "@/context/ProfilesContext";
 
 type MobileMenuContextType = {
   mobileMenuOpen: boolean;
@@ -32,51 +33,54 @@ export default function DashboardShell({ children }: { children: React.ReactNode
 
   return (
     <MobileMenuContext.Provider value={{ mobileMenuOpen, setMobileMenuOpen }}>
-      <div className="min-h-dvh flex flex-col">
-        {/* Desktop sidebar */}
-        {!isMobile && (
-          <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
-        )}
+      <ProfilesProvider>
+        <div className="min-h-dvh flex flex-col">
+          {/* Desktop sidebar */}
+          {!isMobile && (
+            <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} />
+          )}
 
-        {/* Mobile overlay */}
-        {isMobile && mobileMenuOpen && (
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "rgba(0,0,0,0.5)",
-              zIndex: 15,
-            }}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
+          {/* Mobile overlay */}
+          {isMobile && mobileMenuOpen && (
+            <div
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: "rgba(0,0,0,0.5)",
+                zIndex: 15,
+              }}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          )}
 
-        {/* Mobile sidebar drawer */}
-        {isMobile && (
-          <div
-            style={{
-              position: "fixed",
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: mobileMenuOpen ? 220 : 0,
-              zIndex: 25,
-              overflow: "hidden",
-              transition: "width var(--normal) var(--ease)",
-            }}
-          >
-            <Sidebar collapsed={false} onToggle={() => setMobileMenuOpen(false)} isMobileDrawer />
+          {/* Mobile sidebar drawer */}
+          {isMobile && (
+            <div
+              style={{
+                position: "fixed",
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: mobileMenuOpen ? 220 : 0,
+                zIndex: 25,
+                overflow: "hidden",
+                transition: "width var(--normal) var(--ease)",
+              }}
+            >
+              <Sidebar collapsed={false} onToggle={() => setMobileMenuOpen(false)} isMobileDrawer />
+            </div>
+          )}
+
+          {/* Main content */}
+          <div className="flex-1 flex flex-col min-h-dvh" style={{ marginLeft }}>
+            {children}
           </div>
-        )}
-
-        {/* Main content */}
-        <div className="flex-1 flex flex-col min-h-dvh" style={{ marginLeft }}>
-          {children}
         </div>
-      </div>
+      </ProfilesProvider>
     </MobileMenuContext.Provider>
   );
 }
+

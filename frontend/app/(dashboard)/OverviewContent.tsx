@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { DEVICE_PROFILES } from "@/lib/fixtures";
+import { useProfiles } from "@/context/ProfilesContext";
 import { Stat } from "@/components/ui/Stat";
 import { Skel } from "@/components/ui/Skeleton";
 import { TierTag, tierColor } from "@/components/ui/TierTag";
@@ -20,20 +20,24 @@ const ALGO_CATALOGUE = [
 ];
 
 export function OverviewContent() {
+  const { profiles } = useProfiles();
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [fleet, setFleet] = useState<{ metrics: FleetMetrics; results: AnalyzeResponse[] } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    Promise.all([api.health(), api.simulate(DEVICE_PROFILES)])
+    if (profiles.length === 0) return;
+    setLoading(true);
+    Promise.all([api.health(), api.simulate(profiles)])
       .then(([h, sim]) => {
         setHealth(h);
         setFleet({ metrics: sim.fleet_metrics, results: sim.results });
       })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [profiles]);
+
 
   return (
     <div style={{ display: "flex", flexDirection: "column", maxWidth: 1200, width: "100%" }}>

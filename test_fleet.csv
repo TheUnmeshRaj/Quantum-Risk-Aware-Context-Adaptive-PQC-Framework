@@ -1,0 +1,5 @@
+name,description,data_sensitivity,exposure_level,data_lifetime_yrs,threat_window,adversary,ram_kb,cpu,has_fpu,bandwidth_kbps
+Smart Thermostat,IoT thermostat with remote control,2,1,10,1,state-actor,256,ARM Cortex-M4,true,10
+Medical Sensor,Implantable medical device,3,0,15,5,nation-state,128,ARM Cortex-M0,false,1
+Industrial Controller,SCADA network controller,3,2,20,2,state-actor,1024,ARM Cortex-M7,true,100
+Smart Watch,Consumer wearable device,1,3,3,0.5,cybercriminal,512,ARM Cortex-M33,true,50

@@ -4,22 +4,31 @@
 import { Topbar } from "@/components/layout/Topbar";
 import { useState } from "react";
 import { api } from "@/lib/api";
-import { DEVICE_PROFILES } from "@/lib/fixtures";
+import { useProfiles } from "@/context/ProfilesContext";
 import type { ExplainResponse, DeviceProfileRequest } from "@/lib/types";
 
 const STEP_NUM = ["01", "02", "03", "04", "05", "06", "07", "08"];
 
 export default function ExplainPage() {
+  const { profiles } = useProfiles();
   const [idx,       setIdx]       = useState(0);
   const [adversary, setAdversary] = useState<"low" | "medium" | "nation_state">("medium");
   const [result,    setResult]    = useState<ExplainResponse | null>(null);
   const [loading,   setLoading]   = useState(false);
   const [error,     setError]     = useState<string | null>(null);
 
-  const base = DEVICE_PROFILES[idx];
-  const payload: DeviceProfileRequest = {
+  const base = profiles[idx] || profiles[0];
+  const payload: DeviceProfileRequest = base ? {
     ...base, adversary,
     hardware: { ...base.hardware, ram_kb: Math.min(base.hardware.ram_kb, 2_000_000) },
+  } : {
+    name: "Default",
+    data_sensitivity: 5,
+    exposure_level: 5,
+    data_lifetime_yrs: 5,
+    threat_window: 5,
+    adversary: "medium",
+    hardware: { ram_kb: 512, cpu: "ARM", has_fpu: false, bandwidth_kbps: 100 }
   };
 
   async function run() {
@@ -57,7 +66,7 @@ export default function ExplainPage() {
                   border: "1px solid var(--color-rule)", borderRadius: 0,
                 }}
               >
-                {DEVICE_PROFILES.map((d, i) => <option key={i} value={i}>{d.name}</option>)}
+                {profiles.map((d, i) => <option key={i} value={i}>{d.name}</option>)}
               </select>
             </div>
 
