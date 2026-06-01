@@ -1,0 +1,20 @@
+name,description,data_sensitivity,exposure_level,data_lifetime_yrs,threat_window,adversary,ram_kb,cpu,has_fpu,bandwidth_kbps
+Smart Thermostat,IoT thermostat with remote control,2,1,10,1,nation_state,256,ARM Cortex-M4,true,10
+Medical Sensor,Implantable medical device,3,0,15,5,nation_state,128,ARM Cortex-M0,false,1
+Industrial Controller,SCADA network controller,3,2,20,2,nation_state,1024,ARM Cortex-M7,true,100
+Smart Watch,Consumer wearable device,1,3,3,0.5,medium,512,ARM Cortex-M33,true,50
+Camera,IP Security Camera,2,2,5,1,medium,512,ARM Cortex-A53,true,200
+Smart Lock,WiFi-enabled residential smart lock,2,3,8,1,medium,256,ESP32,true,20
+Traffic Sensor,Urban traffic monitoring node,2,2,12,2,nation_state,1024,RISC-V RV32IM,false,15
+Drone Controller,Autonomous UAV flight controller,3,2,10,3,nation_state,2048,ARM Cortex-A72,true,500
+Smart Meter,Electricity consumption monitoring meter,2,1,15,2,nation_state,512,ARM Cortex-M3,false,5
+Point-of-Sale Terminal,Retail payment processing terminal,3,2,7,1,medium,2048,ARM Cortex-A55,true,100
+Vehicle ECU,Automotive engine control unit,3,1,15,5,nation_state,1024,Infineon TriCore,true,50
+Smart Speaker,Voice assistant home device,2,3,4,1,medium,1024,ARM Cortex-A53,true,300
+Environmental Sensor,Air quality and weather sensor node,1,1,8,0.5,low,128,ARM Cortex-M0+,false,2
+Factory Robot Controller,Industrial robotic arm controller,3,1,20,4,nation_state,4096,x86 Atom,true,1000
+Fitness Tracker,Bluetooth health tracking wearable,1,2,3,0.5,medium,256,ARM Cortex-M23,true,10
+Satellite Telemetry Unit,Low-earth orbit telemetry processor,3,0,25,10,nation_state,8192,RAD750,true,2
+Home Router,Consumer broadband router,2,3,6,1,medium,1024,MIPS 24Kc,false,500
+Agricultural Sensor,Soil moisture and crop monitoring sensor,1,1,10,1,low,64,AVR ATmega328P,false,1
+Smart Refrigerator,Connected home appliance with inventory tracking,1,2,8,1,medium,1024,ARM Cortex-A7,true,100

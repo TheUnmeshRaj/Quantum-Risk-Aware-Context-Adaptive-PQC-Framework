@@ -12,11 +12,11 @@ const ADVERSARY = ["low", "medium", "nation_state"] as const;
 
 export function AnalyzeContent() {
   const { profiles, addProfile } = useProfiles();
-  const [idx,       setIdx]       = useState(0);
+  const [idx, setIdx] = useState(0);
   const [adversary, setAdversary] = useState<"low" | "medium" | "nation_state">("medium");
-  const [result,    setResult]    = useState<AnalyzeResponse | null>(null);
-  const [loading,   setLoading]   = useState(false);
-  const [error,     setError]     = useState<string | null>(null);
+  const [result, setResult] = useState<AnalyzeResponse | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Custom profile creation state
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -78,14 +78,14 @@ export function AnalyzeContent() {
     };
 
     addProfile(newProfile);
-    
+
     // Find index of the newly added profile (which gets appended to profiles)
     // and select it
     const newIndex = profiles.length;
     setIdx(newIndex);
     setShowCreateForm(false);
     setResult(null);
-    
+
     // Reset form fields
     setFormName("");
     setFormDesc("");
@@ -217,10 +217,10 @@ export function AnalyzeContent() {
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
               {[
                 ["SENSITIVITY", base.data_sensitivity],
-                ["EXPOSURE",    base.exposure_level],
-                ["LIFETIME",    `${base.data_lifetime_yrs}yr`],
-                ["THREAT WIN",  base.threat_window],
-                ["RAM",         `${(Math.min(base.hardware.ram_kb, 2_000_000) / 1024).toFixed(0)} MB`],
+                ["EXPOSURE", base.exposure_level],
+                ["LIFETIME", `${base.data_lifetime_yrs}yr`],
+                ["THREAT WIN", base.threat_window],
+                ["RAM", `${(Math.min(base.hardware.ram_kb, 2_000_000) / 1024).toFixed(0)} MB`],
               ].map(([k, v]) => (
                 <div key={String(k)} style={{ display: "flex", justifyContent: "space-between" }}>
                   <span className="label">{k}</span>
@@ -233,25 +233,50 @@ export function AnalyzeContent() {
 
         {/* Run */}
         {!showCreateForm && (
-          <button
-            onClick={run}
-            disabled={loading}
-            style={{
-              padding: "10px",
-              fontFamily: "var(--font-mono)",
-              fontSize: "var(--text-12)",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase" as const,
-              background: loading ? "var(--color-ink-2)" : "var(--color-fg-0)",
-              color: loading ? "var(--color-fg-2)" : "var(--color-ink-0)",
-              border: "none",
-              cursor: loading ? "not-allowed" : "pointer",
-              transition: "all var(--fast) var(--ease)",
-            }}
-          >
-            {loading ? "ANALYZING…" : "RUN /ANALYZE"}
-          </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <button
+              onClick={run}
+              disabled={loading}
+              style={{
+                padding: "10px",
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-12)",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                background: loading ? "var(--color-ink-2)" : "var(--color-fg-0)",
+                color: loading ? "var(--color-fg-2)" : "var(--color-ink-0)",
+                border: "none",
+                cursor: loading ? "not-allowed" : "pointer",
+                transition: "all var(--fast) var(--ease)",
+              }}
+            >
+              {loading ? "ANALYZING…" : "RUN /ANALYZE"}
+            </button>
+            <button
+              onClick={() => {
+                setIdx(0);
+                setAdversary("medium");
+                setResult(null);
+                setError(null);
+              }}
+              style={{
+                padding: "10px",
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-12)",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                background: "transparent",
+                color: "var(--color-fg-2)",
+                border: "1px solid var(--color-rule)",
+                cursor: "pointer",
+                transition: "all var(--fast) var(--ease)",
+              }}
+            >
+              RESET
+            </button>
+          </div>
         )}
 
         {error && (
@@ -378,7 +403,7 @@ export function AnalyzeContent() {
               {/* Hardware */}
               <div>
                 <span className="label" style={{ color: "var(--color-fg-0)", marginBottom: 12, display: "block" }}>HARDWARE SPECS</span>
-                
+
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                   <div>
                     <label className="label" style={{ marginBottom: 6, display: "block" }}>RAM (KB)</label>
@@ -413,16 +438,35 @@ export function AnalyzeContent() {
                       style={inputStyle}
                     />
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", height: "100%", paddingTop: 20 }}>
-                    <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", width: "100%" }}>
-                      <input
-                        type="checkbox"
-                        checked={formHasFpu}
-                        onChange={(e) => setFormHasFpu(e.target.checked)}
-                        style={{ width: 18, height: 18, accentColor: "var(--color-fg-0)" }}
-                      />
-                      <span className="label" style={{ userSelect: "none" }}>HAS HARDWARE FPU</span>
-                    </label>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, height: "100%", paddingTop: 20 }}>
+                    <div
+                      onClick={() => setFormHasFpu(!formHasFpu)}
+                      style={{
+                        width: 18,
+                        height: 18,
+                        background: formHasFpu ? "#ffffff" : "var(--color-ink-1)",
+                        border: "1px solid var(--color-rule)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        userSelect: "none",
+                        transition: "all var(--fast) var(--ease)",
+                      }}
+                    >
+                      {formHasFpu && (
+                        <span style={{ color: "#000000", fontSize: "12px", fontWeight: "bold", lineHeight: 1 }}>
+                          ✓
+                        </span>
+                      )}
+                    </div>
+                    <span
+                      onClick={() => setFormHasFpu(!formHasFpu)}
+                      className="label"
+                      style={{ userSelect: "none", cursor: "pointer" }}
+                    >
+                      HAS HARDWARE FPU
+                    </span>
                   </div>
                 </div>
               </div>
@@ -503,9 +547,9 @@ export function AnalyzeContent() {
                 borderBottom: "none",
               }}
             >
-              <Stat label="QRI Score"     value={result.qri}    sub={result.qri_tier} ruled />
-              <Stat label="Required L"    value={`L${result.required_nist_level}`} />
-              <Stat label="Process Time"  value={`${result.processing_time_ms.toFixed(2)}ms`} />
+              <Stat label="QRI Score" value={result.qri} sub={result.qri_tier} ruled />
+              <Stat label="Required L" value={`L${result.required_nist_level}`} />
+              <Stat label="Process Time" value={`${result.processing_time_ms.toFixed(2)}ms`} />
             </div>
             {/* Main result */}
             <div style={{ border: "1px solid var(--color-rule)" }}>

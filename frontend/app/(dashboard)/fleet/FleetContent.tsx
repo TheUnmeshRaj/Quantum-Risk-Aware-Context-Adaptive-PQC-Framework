@@ -360,6 +360,30 @@ Medical Device,Hospital heart monitor,9.5,2.0,15,8.5,nation_state,128,ARM Cortex
             {loading ? "SIMULATING PRESENTS…" : `RUN PRESENTS · ${profiles.length} DEVICES`}
           </button>
 
+          <button
+            onClick={() => {
+              setAdversary("medium");
+              setResult(null);
+              setError(null);
+            }}
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "var(--text-11)",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              padding: "6px 20px",
+              background: "transparent",
+              color: "var(--color-fg-2)",
+              border: "1px solid var(--color-rule)",
+              fontWeight: 700,
+              cursor: "pointer",
+              transition: "all var(--fast) var(--ease)",
+              marginLeft: 8,
+            }}
+          >
+            RESET
+          </button>
+
           {error && (
             <span style={{ marginLeft: 16, fontFamily: "var(--font-mono)", fontSize: "var(--text-11)", color: "var(--color-red)" }}>
               {error}
