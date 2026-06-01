@@ -28,6 +28,54 @@ export function FleetContent() {
   const [pastedCSV, setPastedCSV] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Sorting & Filtering State
+  const [filterRisk, setFilterRisk] = useState<string>("all");
+  const [filterGap, setFilterGap] = useState<boolean>(false);
+  const [sortBy, setSortBy] = useState<string>("qri_desc");
+
+  // ── Algorithm Breakdown Summary ──
+  const getAlgoSummary = () => {
+    if (!result) return [];
+    const counts: Record<string, number> = {};
+    result.results.forEach((r) => {
+      const algo = r.selected_algorithm || "Unknown";
+      counts[algo] = (counts[algo] || 0) + 1;
+    });
+    return Object.entries(counts).map(([name, count]) => ({ name, count }));
+  };
+
+  // ── Processed Results (Filtered & Sorted) ──
+  const getProcessedResults = () => {
+    if (!result) return [];
+    let items = [...result.results];
+
+    // Filter by Risk Tier
+    if (filterRisk !== "all") {
+      items = items.filter(r => r.qri_tier.toLowerCase() === filterRisk);
+    }
+
+    // Filter by Gap
+    if (filterGap) {
+      items = items.filter(r => r.security_gap > 0);
+    }
+
+    // Sort
+    items.sort((a, b) => {
+      if (sortBy === "qri_desc") return b.qri - a.qri;
+      if (sortBy === "qri_asc") return a.qri - b.qri;
+      if (sortBy === "name") return a.device.localeCompare(b.device);
+      if (sortBy === "time_desc") return b.processing_time_ms - a.processing_time_ms;
+      if (sortBy === "compliance_desc") {
+        const compA = a.achieved_nist_level / 5;
+        const compB = b.achieved_nist_level / 5;
+        return compB - compA;
+      }
+      return 0;
+    });
+
+    return items;
+  };
+
   // Native CSV Parser
   function parseCSVText(text: string): any[] {
     const lines = text.split(/\r?\n/);
@@ -252,6 +300,9 @@ export function FleetContent() {
     setFileName(null);
     setPastedCSV("");
     setResult(null);
+    setFilterRisk("all");
+    setFilterGap(false);
+    setSortBy("qri_desc");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -365,6 +416,9 @@ Medical Device,Hospital heart monitor,9.5,2.0,15,8.5,nation_state,128,ARM Cortex
               setAdversary("medium");
               setResult(null);
               setError(null);
+              setFilterRisk("all");
+              setFilterGap(false);
+              setSortBy("qri_desc");
             }}
             style={{
               fontFamily: "var(--font-mono)",
@@ -590,9 +644,146 @@ Medical Device,Hospital heart monitor,9.5,2.0,15,8.5,nation_state,128,ARM Cortex
         </div>
       ) : null}
 
+      {/* ── Algorithm Recommendation Summary ── */}
+      {result && !loading && (
+        <div
+          className="fade-in"
+          style={{
+            border: "1px solid var(--color-rule)",
+            background: "var(--color-ink-1)",
+            padding: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          <span className="label" style={{ color: "var(--color-fg-0)" }}>ALGORITHM DEPLOYMENT SUMMARY</span>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+            {getAlgoSummary().map((item) => (
+              <div
+                key={item.name}
+                style={{
+                  flex: "1 1 200px",
+                  background: "var(--color-ink-2)",
+                  border: "1px solid var(--color-rule-dim)",
+                  padding: "10px 14px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                }}
+              >
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-11)", color: "var(--color-fg-2)" }}>{item.name}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-20)", fontWeight: 700, color: "var(--color-fg-0)" }}>
+                    {item.count}
+                  </span>
+                  <span className="label" style={{ fontSize: "var(--text-10)", color: "var(--color-fg-1)" }}>
+                    {((item.count / result.results.length) * 100).toFixed(0)}% OF FLEET
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Sorting and Filtering Control Bar ── */}
+      {result && !loading && (
+        <div
+          className="fade-in"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 12,
+            background: "var(--color-ink-3)",
+            border: "1px solid var(--color-rule)",
+            padding: "10px 16px",
+          }}
+        >
+          {/* Filters */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span className="label">RISK:</span>
+              <select
+                value={filterRisk}
+                onChange={(e) => setFilterRisk(e.target.value)}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "var(--text-11)",
+                  padding: "4px 8px",
+                  background: "var(--color-ink-2)",
+                  border: "1px solid var(--color-rule)",
+                  color: "var(--color-fg-0)",
+                  cursor: "pointer",
+                }}
+              >
+                <option value="all">ALL RISK LEVELS</option>
+                <option value="critical">CRITICAL ONLY</option>
+                <option value="high">HIGH ONLY</option>
+                <option value="elevated">ELEVATED ONLY</option>
+                <option value="moderate">MODERATE ONLY</option>
+                <option value="low">LOW ONLY</option>
+              </select>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+                <div
+                  onClick={() => setFilterGap(!filterGap)}
+                  style={{
+                    width: 14,
+                    height: 14,
+                    background: filterGap ? "#ffffff" : "var(--color-ink-2)",
+                    border: "1px solid var(--color-rule)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    userSelect: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  {filterGap && (
+                    <span style={{ color: "#000000", fontSize: "10px", fontWeight: "bold", lineHeight: 1 }}>
+                      ✓
+                    </span>
+                  )}
+                </div>
+                <span className="label" style={{ userSelect: "none" }}>ONLY SECURITY GAPS</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Sort */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span className="label">SORT BY:</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-11)",
+                padding: "4px 8px",
+                background: "var(--color-ink-2)",
+                border: "1px solid var(--color-rule)",
+                color: "var(--color-fg-0)",
+                cursor: "pointer",
+              }}
+            >
+              <option value="qri_desc">QRI SCORE (HIGH → LOW)</option>
+              <option value="qri_asc">QRI SCORE (LOW → HIGH)</option>
+              <option value="name">DEVICE NAME</option>
+              <option value="time_desc">TIME (HIGH → LOW)</option>
+              <option value="compliance_desc">COMPLIANCE (HIGH → LOW)</option>
+            </select>
+          </div>
+        </div>
+      )}
+
       {/* ── Fleet table ── */}
-      {result && (
-        <div className="fade-in" style={{ border: "1px solid var(--color-rule)", overflowX: "auto" }}>
+      {result && !loading && (
+        <div className="fade-in" style={{ border: "1px solid var(--color-rule)", borderTop: "none", overflowX: "auto" }}>
           {/* Header */}
           <div
             style={{
@@ -609,50 +800,68 @@ Medical Device,Hospital heart monitor,9.5,2.0,15,8.5,nation_state,128,ARM Cortex
             ))}
           </div>
 
-          {result.results.map((r) => {
-            const compliance = r.achieved_nist_level / 5;
-            const compColor = compliance >= 0.8 ? "var(--color-green)" : compliance >= 0.6 ? "var(--color-yellow)" : "var(--color-red)";
-            return (
-              <div
-                key={r.device}
-                className="hover-surface"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "2fr 80px 2fr 60px 100px 80px",
-                  padding: "12px 16px",
-                  borderBottom: "1px solid var(--color-rule-dim)",
-                  borderLeft: `2px solid ${tierColor(r.qri_tier)}`,
-                  alignItems: "center",
-                  transition: "background var(--fast) var(--ease)",
-                  minWidth: "600px",
-                }}
-              >
-                <div>
-                  <div style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-13)", fontWeight: 500, color: "var(--color-fg-0)", marginBottom: 2 }}>
-                    {r.device}
+          {getProcessedResults().length === 0 ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 120,
+                background: "var(--color-ink-1)",
+                color: "var(--color-fg-2)",
+                fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-11)",
+                textTransform: "uppercase",
+              }}
+            >
+              No simulated devices match active filters
+            </div>
+          ) : (
+            getProcessedResults().map((r) => {
+              const compliance = r.achieved_nist_level / 5;
+              const compColor = compliance >= 0.8 ? "var(--color-green)" : compliance >= 0.6 ? "var(--color-yellow)" : "var(--color-red)";
+              return (
+                <div
+                  key={r.device}
+                  className="hover-surface"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "2fr 80px 2fr 60px 100px 80px",
+                    padding: "12px 16px",
+                    borderBottom: "1px solid var(--color-rule-dim)",
+                    borderLeft: `2px solid ${tierColor(r.qri_tier)}`,
+                    alignItems: "center",
+                    transition: "background var(--fast) var(--ease)",
+                    minWidth: "600px",
+                  }}
+                >
+                  <div>
+                    <div style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-13)", fontWeight: 500, color: "var(--color-fg-0)", marginBottom: 2 }}>
+                      {r.device}
+                    </div>
+                    <TierTag tier={r.qri_tier} />
                   </div>
-                  <TierTag tier={r.qri_tier} />
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-14)", fontWeight: 700, color: tierColor(r.qri_tier) }}>
+                    {r.qri}
+                  </span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-11)", color: "var(--color-fg-1)" }}>
+                    {r.selected_algorithm}
+                  </span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-13)", color: "var(--color-fg-0)" }}>
+                    L{r.achieved_nist_level}
+                    {r.security_gap > 0 && <span style={{ color: "var(--color-yellow)", marginLeft: 4 }}>⚠</span>}
+                  </span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                    <span className="label" style={{ color: compColor }}>{Math.round(compliance * 100)}%</span>
+                    <Bar value={compliance} color={compColor} height={2} />
+                  </div>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-11)", color: "var(--color-fg-2)", textAlign: "right" }}>
+                    {r.processing_time_ms.toFixed(1)}ms
+                  </span>
                 </div>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-14)", fontWeight: 700, color: tierColor(r.qri_tier) }}>
-                  {r.qri}
-                </span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-11)", color: "var(--color-fg-1)" }}>
-                  {r.selected_algorithm}
-                </span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-13)", color: "var(--color-fg-0)" }}>
-                  L{r.achieved_nist_level}
-                  {r.security_gap > 0 && <span style={{ color: "var(--color-yellow)", marginLeft: 4 }}>⚠</span>}
-                </span>
-                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                  <span className="label" style={{ color: compColor }}>{Math.round(compliance * 100)}%</span>
-                  <Bar value={compliance} color={compColor} height={2} />
-                </div>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-11)", color: "var(--color-fg-2)", textAlign: "right" }}>
-                  {r.processing_time_ms.toFixed(1)}ms
-                </span>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       )}
 
