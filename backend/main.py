@@ -26,6 +26,7 @@ if sys.stdout.encoding.lower() != "utf-8":
 import textwrap
 import time
 
+from backend.core.decision_engine import compute_capability_from_hardware
 from backend.utils.decision_engine import select_algorithm
 from backend.utils.devices import DEVICE_PROFILES
 from backend.utils.pqc import run_crypto
@@ -135,16 +136,20 @@ def print_device_result(profile: dict, qri_result: dict, decision: dict, crypto_
     print(f"  Algorithm : {C.BOLD}{C.CYAN}{algo['label']}{C.RESET}")
     print(f"  Mode      : {algo['mode']}")
     print(f"  Security  : {algo['security_level']}")
-    print(f"  Key sizes : {C.DIM}{algo['key_sizes']}{C.RESET}")
-    print(f"  Latency   : {algo['latency_class']}")
+    if algo.get("key_sizes"):
+        print(f"  Key sizes : {C.DIM}{algo['key_sizes']}{C.RESET}")
+    latency_class = algo.get("latency_class")
+    if latency_class:
+        print(f"  Latency   : {latency_class}")
     print()
     print(f"  {C.BOLD}Rationale{C.RESET}")
-    print(wrap(decision["justification"], indent="    "))
+    print(wrap(decision.get("justification", decision.get("reason", "No justification available.")), indent="    "))
     print()
 
-    if decision["capability_note"]:
+    capability_note = decision.get("capability_note")
+    if capability_note:
         print(f"  {C.YELLOW}{C.BOLD}⚠  Capability Constraint{C.RESET}")
-        print(wrap(decision["capability_note"], indent="    "))
+        print(wrap(capability_note, indent="    "))
         print()
 
     # ── Crypto operations ─────────────────────────────────────────────────
@@ -152,8 +157,12 @@ def print_device_result(profile: dict, qri_result: dict, decision: dict, crypto_
         print(f"  {C.BOLD}Cryptographic Operations{C.RESET}")
         for op in crypto_result["operations"]:
             ms_str = f"{op['ms']:.3f} ms" if op.get("ms") is not None else "combined"
-            size_kb = op["size_bytes"] / 1024
-            print(f"    {op['op']:40s}  {size_kb:6.2f} KB   {ms_str}")
+            size_bytes = op.get("size_bytes", op.get("size"))
+            if size_bytes is not None:
+                size_kb = size_bytes / 1024
+                print(f"    {op['op']:40s}  {size_kb:6.2f} KB   {ms_str}")
+            else:
+                print(f"    {op['op']:40s}  {'-':>6s} KB   {ms_str}")
         if "note" in crypto_result:
             print(f"  {C.DIM}  Note: {crypto_result['note']}{C.RESET}")
         print()
@@ -182,7 +191,7 @@ def print_summary_table(results: list):
 
 def main():
     # Parse simple CLI flags
-    run_crypto = "--no-crypto" not in sys.argv
+    enable_crypto = "--no-crypto" not in sys.argv
     filter_device = None
     if "--device" in sys.argv:
         idx = sys.argv.index("--device")
@@ -191,7 +200,7 @@ def main():
 
     print_header()
 
-    if not run_crypto:
+    if not enable_crypto:
         print(C.DIM + "  [--no-crypto flag set: skipping cryptographic operations]\n" + C.RESET)
 
     profiles_to_run = DEVICE_PROFILES
@@ -204,25 +213,28 @@ def main():
     all_results = []
 
     for profile in profiles_to_run:
+        hardware = profile["hardware"]
+        device_capability = compute_capability_from_hardware(hardware)
+
         # ── Step 1: Compute QRI ────────────────────────────────────────────
         qri_result = compute_qri(
             data_sensitivity  = profile["data_sensitivity"],
             exposure_level    = profile["exposure_level"],
             data_lifetime     = normalize_lifetime(profile["data_lifetime_yrs"]),
             threat_window     = profile["threat_window"],
-            device_capability = profile["device_capability"],
+            device_capability = device_capability,
         )
 
         # ── Step 2: Decision layer ─────────────────────────────────────────
         decision = select_algorithm(
             qri               = qri_result["qri"],
-            device_capability = profile["device_capability"],
-            device_name       = profile["name"],
+            hardware          = hardware,
+            device            = profile,
         )
 
         # ── Step 3: Crypto demo ────────────────────────────────────────────
         crypto_result = None
-        if run_crypto:
+        if enable_crypto:
             try:
                 crypto_result = run_crypto(
                     algorithm_key = decision["algorithm_key"],

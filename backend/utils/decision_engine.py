@@ -181,7 +181,7 @@ def _bandwidth_fit(algo, hardware):
 # NEW SCORING-BASED ENGINE
 # ---------------------------------------------------------------------------
 
-def select_algorithm_scored(qri: float, hardware: dict, device):
+def select_algorithm(qri: float, hardware: dict, device):
     scored = []
     rejected = []
 

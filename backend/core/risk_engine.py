@@ -10,6 +10,7 @@ Weight Justification (NIST SP 800-30 derived)
   threat_window     20%  — confidentiality lifetime vs Q-Day timeline overlap
   exposure_level    15%  — attack surface; air-gapped systems have lower interception risk
   device_capability 10%  — inverted: weaker device = fewer algorithm choices = higher urgency
+-----------------------------------------------
 """
 
 from __future__ import annotations
@@ -23,7 +24,7 @@ WEIGHTS = {
     "data_lifetime":      0.25,
     "threat_window":      0.20,
     "exposure_level":     0.15,
-    "device_capability":  0.10,  # inverted before weighting
+    "device_capability":  0.10,  
 }
 
 

@@ -16,8 +16,7 @@ All catalogue data lives in core/constants.py — this module contains ONLY logi
 from __future__ import annotations
 
 import time
-from dataclasses import dataclass, field
-from typing import Optional
+from dataclasses import dataclass
 
 from backend.core.constants import ALGORITHM_CATALOGUE, AlgorithmSpec
 from backend.utils.logger import get_logger
@@ -156,7 +155,7 @@ def _score_algorithm(
 
 def compute_capability_from_hardware(hardware: dict) -> float:
     """
-    Derive a 0–10 device capability score from hardware fields.
+    Derive a 0–10 device capability score from hardwars.
 
     Used by risk_engine and the migration simulator.
     """

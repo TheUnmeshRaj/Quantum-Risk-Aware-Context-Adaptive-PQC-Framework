@@ -27,17 +27,16 @@ from __future__ import annotations
 import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException, Request #type:ignore
+from fastapi.middleware.cors import CORSMiddleware #type:ignore
+from fastapi.middleware.gzip import GZipMiddleware #type:ignore 
+from fastapi.responses import JSONResponse #type:ignore
 
-from backend.core.decision_engine import select_algorithm_scored, compute_capability_from_hardware
 from backend.core.risk_engine import compute_qri, normalize_lifetime
+from backend.core.decision_engine import select_algorithm_scored, compute_capability_from_hardware
 from backend.models.schemas import (
     AnalyzeResponse, ConstraintsSummary, DeviceProfileRequest,
-    ExplainResponse, FactorScores, FleetMetrics, HealthResponse,
-    QRIResult, RejectedAlgorithm, ScoreBreakdown, SimulateRequest,
+    ExplainResponse, FleetMetrics, HealthResponse, RejectedAlgorithm, ScoreBreakdown, SimulateRequest,
     SimulateResponse, AlgorithmAlternative,
 )
 from backend.simulation.evaluator import evaluate_fleet
@@ -93,9 +92,6 @@ async def add_process_time_header(request: Request, call_next):
                  response.status_code, elapsed)
     return response
 
-
-# ── Exception handlers ────────────────────────────────────────────────────────
-
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
     logger.warning("HTTP %d on %s: %s", exc.status_code, request.url.path, exc.detail)
@@ -148,8 +144,6 @@ def _build_analyze_response(dev: DeviceProfileRequest) -> AnalyzeResponse:
         hardware = hw_dict,
         device   = dev_dict,
     )
-
-    fs = qri_out["factor_scores"]
 
     return AnalyzeResponse(
         device             = dev.name,

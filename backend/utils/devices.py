@@ -200,4 +200,5 @@ DEVICE_PROFILES = [
             "Typical target for mass-scale HNDL attacks on home networks."
         ),
     },
+
 ]
