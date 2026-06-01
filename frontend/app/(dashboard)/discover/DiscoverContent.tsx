@@ -57,12 +57,12 @@ export function DiscoverContent() {
 
     let scanTargets: any[] = [];
     try {
-      addLog("📡 CONNECTING TO AUTOMATION DAEMON & DEPLOYING SCANNER...");
+      addLog("CONNECTING TO AUTOMATION DAEMON & DEPLOYING SCANNER...");
       const res = await api.discover(subnets, scanSpeed);
       scanTargets = res.devices || [];
-      addLog(`📡 DAEMON ACQUIRED: Scanning queue initialized with ${scanTargets.length} potential hosts.`);
+      addLog(`DAEMON ACQUIRED: Scanning queue initialized with ${scanTargets.length} potential hosts.`);
     } catch (err) {
-      addLog(`❌ NETWORK ERROR: Failed to reach discovery daemon: ${err instanceof Error ? err.message : String(err)}`);
+      addLog(`NETWORK ERROR: Failed to reach discovery daemon: ${err instanceof Error ? err.message : String(err)}`);
       setStatus("idle");
       return;
     }
@@ -408,7 +408,7 @@ export function DiscoverContent() {
               background: "var(--color-ink-2)",
             }}
           >
-            <span style={{ fontSize: 32, marginBottom: 12 }}>🤖</span>
+            <span style={{ fontSize: 32, marginBottom: 12 }}></span>
             <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-14)", fontWeight: 700, color: "var(--color-fg-0)", marginBottom: 8, textTransform: "uppercase" }}>
               Automated Discovery Daemon
             </h3>
