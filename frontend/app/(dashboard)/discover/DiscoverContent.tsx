@@ -187,7 +187,7 @@ export function DiscoverContent() {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 0, maxWidth: 1200 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 0, maxWidth: 1100 }}>
       {/* ── Sidebar Controls ── */}
       <aside
         style={{
