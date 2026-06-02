@@ -1,7 +1,7 @@
 """
 api/app.py
 ==========
-Production FastAPI application — Unysis PQC Decision Framework
+Production FastAPI application — UNISYS PQC Decision Framework
 
 Endpoints
 ---------
@@ -55,14 +55,14 @@ _START_TIME = time.time()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("=" * 60)
-    logger.info("  Unysis PQC Framework API  —  starting up")
+    logger.info("  UNISYS PQC Framework API  —  starting up")
     logger.info("=" * 60)
     yield
-    logger.info("Unysis PQC Framework API  —  shutting down")
+    logger.info("UNISYS PQC Framework API  —  shutting down")
 
 
 app = FastAPI(
-    title="Unysis — PQC Decision Framework",
+    title="UNISYS — PQC Decision Framework",
     description=(
         "Quantum Risk-Aware Context-Adaptive Post-Quantum Cryptographic Decision API. "
         "Computes per-device Quantum Risk Index (QRI) and selects the optimal "
@@ -193,7 +193,7 @@ async def health_check() -> HealthResponse:
     """Returns service status, version, and uptime in seconds."""
     return HealthResponse(
         status     = "healthy",
-        service    = "Unysis PQC Decision Framework",
+        service    = "UNISYS PQC Decision Framework",
         version    = "2.0.0",
         uptime_sec = round(time.time() - _START_TIME, 1),
     )
@@ -354,7 +354,7 @@ async def root_status():
     """Returns basic service index info for Render/Vercel status checks."""
     return {
         "status": "healthy",
-        "service": "Unysis PQC Decision Framework API",
+        "service": "UNISYS PQC Decision Framework API",
         "version": "2.0.0",
         "docs": "/docs"
     }
@@ -368,11 +368,13 @@ async def root_status():
 )
 async def discover_network(req: DiscoverRequest) -> DiscoverResponse:
     """
-    Performs a real OS ARP subnet sweep and TCP socket sweep for active hosts on local ports
-    and automatically computes risk-aware post-quantum algorithm selection for them.
+    Performs a real OS ARP subnet sweep and TCP socket sweep for active hosts on local ports,
+    falls back to a real Localhost Self-Audit to query your actual machine specifications,
+    and falls back to resilient simulated nodes in sandboxed cloud environments.
     """
     logger.info("POST /discover — subnets: %s, speed: %s", req.subnets, req.speed)
     
+    import uuid
     discovered_hosts = []
     
     # 1. Probe the ARP table (works on Windows, Linux, macOS)
@@ -392,7 +394,7 @@ async def discover_network(req: DiscoverRequest) -> DiscoverResponse:
         22: {"name": "Linux Gateway Controller", "cpu": "ARM Cortex-A72", "ram_kb": 2048000, "has_fpu": True, "bandwidth_kbps": 100000.0, "sensitivity": 8.0, "exposure": 4.0, "lifetime": 10.0, "threat": 8.0, "adv": "nation_state"},
         80: {"name": "IP Smart CCTV Camera", "cpu": "ARM Cortex-A53", "ram_kb": 512000, "has_fpu": True, "bandwidth_kbps": 50000.0, "sensitivity": 5.0, "exposure": 7.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium"},
         443: {"name": "IP Smart CCTV Camera", "cpu": "ARM Cortex-A53", "ram_kb": 512000, "has_fpu": True, "bandwidth_kbps": 50000.0, "sensitivity": 5.0, "exposure": 7.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium"},
-        502: {"name": "SCADA Network PLC Unit", "cpu": "ARM Cortex-M7", "ram_kb": 4096, "has_fpu": True, "bandwidth_kbps": 1000.0, "sensitivity": 9.0, "exposure": 2.0, "lifetime": 20.0, "threat": 9.0, "adv": "nation_state"},
+        502: {"name": "SCADA Network PLC Unit", "cpu": "ARM Cortex-M7", "ram_kb": 4096, "has_fpu": True, "bandwidth_kbps": 100.0, "sensitivity": 9.0, "exposure": 2.0, "lifetime": 20.0, "threat": 9.0, "adv": "nation_state"},
         47808: {"name": "Building Thermostat BACnet Controller", "cpu": "ARM Cortex-M4", "ram_kb": 512, "has_fpu": False, "bandwidth_kbps": 100.0, "sensitivity": 3.0, "exposure": 5.0, "lifetime": 8.0, "threat": 4.0, "adv": "low"}
     }
 
@@ -432,18 +434,83 @@ async def discover_network(req: DiscoverRequest) -> DiscoverResponse:
                 DiscoveredDevice(ip=ip, mac=mac.upper(), analysis=analysis)
             )
 
-    # 3. Resilient fallback to simulated hosts if no active local hosts are found
-    # (guarantees a working scanner in cloud hosting environments)
-    if not discovered_hosts:
-        logger.info("ARP scanning sweep yielded empty hosts. Triggering cloud-resilience mock sweep.")
+    # 3. Dynamic Local Host Machine Self-Audit (Tier 2/3 check)
+    # Always try to inject the actual developer host machine profile to showcase real hardware sweeps
+    try:
+        # Query host interface IP address
+        local_ip = "127.0.0.1"
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(("8.8.8.8", 80))
+            local_ip = s.getsockname()[0]
+            s.close()
+        except Exception:
+            try:
+                local_ip = socket.gethostbyname(socket.gethostname())
+            except Exception:
+                local_ip = "127.0.0.1"
+
+        # Query host physical MAC Address
+        try:
+            mac_num = uuid.getnode()
+            mac_str = ':'.join(re.findall(r'..', '%012X' % mac_num)).upper()
+        except Exception:
+            mac_str = "D4:3B:04:E6:B1:A7"
+
+        # Query host CPU architecture
+        cpu_arch = platform.machine()
+        cpu_processor = platform.processor() or "Multi-Core CPU"
+        cpu_clean = cpu_processor if len(cpu_processor) < 25 else f"{cpu_arch} Processor"
+
+        # Query total RAM
+        ram_val_kb = 16000000  # Default to 16GB
+        try:
+            import psutil
+            ram_val_kb = int(psutil.virtual_memory().total / 1024)
+        except ImportError:
+            pass
+
+        # Build Host profile
+        host_dev_req = DeviceProfileRequest(
+            name=f"Host Workstation ({platform.node()})",
+            data_sensitivity=6.5,
+            exposure_level=4.0,
+            data_lifetime_yrs=10.0,
+            threat_window=5.0,
+            adversary="medium",
+            hardware={
+                "ram_kb": ram_val_kb,
+                "cpu": f"{cpu_clean}",
+                "has_fpu": True,
+                "bandwidth_kbps": 1000000.0  # 1 Gbps loopback/NIC speed
+            }
+        )
+        host_analysis = _build_analyze_response(host_dev_req)
+        
+        # Insert host at the top of discovered hosts list!
+        discovered_hosts.insert(0,
+            DiscoveredDevice(ip=local_ip, mac=mac_str, analysis=host_analysis)
+        )
+        logger.info("Localhost self-audit successfully appended real host profile: %s", local_ip)
+    except Exception as hex_err:
+        logger.warning("Localhost self-audit sweep failed: %s", hex_err)
+
+    # 4. Resilient fallback to simulated hosts if no other LAN devices are found
+    # (keeps the grid active and beautiful under isolated/cloud container networks)
+    if len(discovered_hosts) <= 1:
+        logger.info("LAN ARP sweep empty. Populating network map with standard simulated IoT targets.")
         fallback_targets = [
-            {"ip": "192.168.1.15", "mac": "5C:A6:2D:4B:11:0C", "name": "Smart Thermostat Node", "sensitivity": 3.0, "exposure": 2.0, "lifetime": 8.0, "threat": 4.0, "adv": "low", "cpu": "ARM Cortex-M4", "ram": 512, "fpu": False, "bw": 100},
-            {"ip": "10.0.0.42", "mac": "D8:43:0E:8F:2C:14", "name": "Hospital Patient Records Database", "sensitivity": 9.5, "exposure": 1.0, "lifetime": 15.0, "threat": 9.5, "adv": "nation_state", "cpu": "x86-64 server", "ram": 16000000, "fpu": True, "bw": 1000000},
-            {"ip": "192.168.1.88", "mac": "00:1A:2B:3C:4D:5E", "name": "SCADA Network PLC Unit", "sensitivity": 8.5, "exposure": 5.0, "lifetime": 20.0, "threat": 8.5, "adv": "nation_state", "cpu": "ARM Cortex-M7", "ram": 2048, "fpu": True, "bw": 1000},
-            {"ip": "10.0.0.119", "mac": "F0:E1:D2:C3:B4:A5", "name": "IP Smart CCTV Camera", "sensitivity": 5.0, "exposure": 8.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium", "cpu": "ARM Cortex-A53", "ram": 1024000, "fpu": True, "bw": 50000}
+            {"ip": "192.168.1.15", "mac": "5C:A6:2D:4B:11:0C", "name": "Smart Thermostat Node", "sensitivity": 3.0, "exposure": 2.0, "lifetime": 8.0, "threat": 4.0, "adv": "low", "cpu": "ARM Cortex-M4", "ram": 512, "fpu": False, "bw": 100.0},
+            {"ip": "10.0.0.42", "mac": "D8:43:0E:8F:2C:14", "name": "Hospital Patient Records Database", "sensitivity": 9.5, "exposure": 1.0, "lifetime": 15.0, "threat": 9.5, "adv": "nation_state", "cpu": "x86-64 server", "ram": 16000000, "fpu": True, "bw": 1000000.0},
+            {"ip": "192.168.1.88", "mac": "00:1A:2B:3C:4D:5E", "name": "SCADA Network PLC Unit", "sensitivity": 8.5, "exposure": 5.0, "lifetime": 20.0, "threat": 8.5, "adv": "nation_state", "cpu": "ARM Cortex-M7", "ram": 2048, "fpu": True, "bw": 1000.0},
+            {"ip": "10.0.0.119", "mac": "F0:E1:D2:C3:B4:A5", "name": "IP Smart CCTV Camera", "sensitivity": 5.0, "exposure": 8.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium", "cpu": "ARM Cortex-A53", "ram": 1024000, "fpu": True, "bw": 50000.0}
         ]
         
         for t in fallback_targets:
+            # Prevent duplicating host IP if fallback matches
+            if any(h.ip == t["ip"] for h in discovered_hosts):
+                continue
+                
             dev_req = DeviceProfileRequest(
                 name=t["name"],
                 data_sensitivity=t["sensitivity"],

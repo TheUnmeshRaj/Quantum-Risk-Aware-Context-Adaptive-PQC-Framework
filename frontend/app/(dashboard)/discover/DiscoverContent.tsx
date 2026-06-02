@@ -5,8 +5,6 @@ import { api } from "@/lib/api";
 import { useProfiles } from "@/context/ProfilesContext";
 import { Stat } from "@/components/ui/Stat";
 import { TierTag, tierColor } from "@/components/ui/TierTag";
-import { Bar } from "@/components/ui/Bar";
-import type { AnalyzeResponse, DeviceProfileRequest } from "@/lib/types";
 
 interface DiscoveredDevice {
   ip: string;
@@ -204,7 +202,7 @@ export function DiscoverContent() {
               transition: "all var(--fast) var(--ease)",
             }}
           >
-            {status === "scanning" ? "SCANNING SUBNETS…" : "⚡ START AUTOMATION"}
+            {status === "scanning" ? "SCANNING SUBNETS…" : "START AUTOMATION"}
           </button>
         </div>
 
@@ -413,7 +411,7 @@ export function DiscoverContent() {
               Automated Discovery Daemon
             </h3>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "var(--text-12)", color: "var(--color-fg-2)", maxWidth: 500, lineHeight: 1.6 }}>
-              In production environments, UNYSIS launches background scan subnets via network port scanning or active device polling (BACnet, Modbus, MQTT). Discovered profiles are automatically simulated against active NIST FIPS PQC algorithms.
+              In production environments, UNISYS launches background scan subnets via network port scanning or active device polling (BACnet, Modbus, MQTT). Discovered profiles are automatically simulated against active NIST FIPS PQC algorithms.
             </p>
           </div>
         )}

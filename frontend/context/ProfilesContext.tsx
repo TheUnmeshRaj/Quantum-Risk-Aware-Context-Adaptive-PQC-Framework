@@ -21,7 +21,7 @@ export function ProfilesProvider({ children }: { children: React.ReactNode }) {
   // Load custom profiles from localStorage on mount
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem("unysis_custom_profiles");
+    const stored = localStorage.getItem("UNISYS_custom_profiles");
     if (stored) {
       try {
         setCustomProfiles(JSON.parse(stored));
@@ -35,7 +35,7 @@ export function ProfilesProvider({ children }: { children: React.ReactNode }) {
   const saveCustomProfiles = (newCustom: DeviceProfileRequest[]) => {
     setCustomProfiles(newCustom);
     if (typeof window !== "undefined") {
-      localStorage.setItem("unysis_custom_profiles", JSON.stringify(newCustom));
+      localStorage.setItem("UNISYS_custom_profiles", JSON.stringify(newCustom));
     }
   };
 

@@ -1,4 +1,4 @@
-# Backend requirements for Unysis PQC Framework
+# Backend requirements for UNISYS PQC Framework
 # Minimal set inferred from backend/ imports (fastapi app, pydantic models,
 # cryptography for demo crypto, qiskit for quantum simulations, gymnasium for envs).
 

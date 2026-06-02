@@ -7,11 +7,11 @@ import { useState } from "react";
 import { useMobileMenu } from "./DashboardShell";
 
 const NAV = [
-  { href: "/",           label: "Overview"   },
-  { href: "/analyze",    label: "Analyze"    },
-  { href: "/fleet",      label: "Fleet"      },
-  { href: "/discover",   label: "Discover"   },
-  { href: "/explain",    label: "Explain"    },
+  { href: "/", label: "Overview" },
+  { href: "/analyze", label: "Analyze" },
+  { href: "/fleet", label: "Fleet" },
+  { href: "/discover", label: "Discover" },
+  { href: "/explain", label: "Explain" },
   { href: "/algorithms", label: "Algorithms" },
 ];
 
@@ -54,7 +54,7 @@ export function Sidebar({ collapsed: collapsedProp, onToggle, isMobileDrawer }: 
       <div className={`px-4 ${collapsed ? 'py-3' : 'py-5'} rule-b flex items-center`}>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "var(--font-mono)", fontSize: "var(--text-14)", fontWeight: 700, letterSpacing: "0.08em", color: "var(--color-fg-0)" }} className="text-center w-full">
-            {collapsed ? 'U' : 'UNYSIS'}
+            {collapsed ? 'U' : 'UNISYS'}
           </div>
         </div>
         <button
@@ -101,8 +101,8 @@ export function Sidebar({ collapsed: collapsedProp, onToggle, isMobileDrawer }: 
               <span style={{ width: collapsed ? 28 : 'auto', textAlign: collapsed ? 'center' : 'left', display: 'inline-flex', justifyContent: collapsed ? 'center' : 'flex-start' }}>
                 {collapsed ? (
                   // Icon when collapsed
-                  (function IconFor(l: string){
-                    switch(l){
+                  (function IconFor(l: string) {
+                    switch (l) {
                       case 'Overview': return (
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                           <path d="M3 11L12 3l9 8v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8z" fill="currentColor" />

@@ -1,7 +1,7 @@
 """
 utils/logger.py
 ===============
-Shared logging factory for the Unysis PQC Framework.
+Shared logging factory for the UNISYS PQC Framework.
 
 Usage:
     from utils.logger import get_logger

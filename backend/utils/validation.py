@@ -1,7 +1,7 @@
 """
 utils/validation.py
 ===================
-Input validation layer for the Unysis PQC Framework.
+Input validation layer for the UNISYS PQC Framework.
 
 All functions raise ``fastapi.HTTPException`` (400) so callers
 don't need to catch or re-wrap errors.

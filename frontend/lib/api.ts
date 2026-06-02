@@ -38,7 +38,7 @@ if (typeof window !== "undefined") {
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const finalUrl = `${BASE}${path}`;
-  console.log(`[UNYSIS API] Initiating fetch request:`, {
+  console.log(`[UNISYS API] Initiating fetch request:`, {
     path,
     configuredBase: process.env.NEXT_PUBLIC_API_URL,
     resolvedBase: BASE,
@@ -53,7 +53,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
       ...init,
     });
 
-    console.log(`[UNYSIS API] Response received from ${path}:`, {
+    console.log(`[UNISYS API] Response received from ${path}:`, {
       status: res.status,
       statusText: res.statusText,
       ok: res.ok
@@ -62,12 +62,12 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     if (!res.ok) {
       const err = await res.json().catch(() => ({ detail: res.statusText }));
       const errorMsg = err.detail ?? `HTTP ${res.status}`;
-      console.error(`[UNYSIS API] Server returned error for ${path}:`, errorMsg);
+      console.error(`[UNISYS API] Server returned error for ${path}:`, errorMsg);
       throw new Error(errorMsg);
     }
     return res.json() as Promise<T>;
   } catch (err: any) {
-    console.error(`[UNYSIS API] Fetch exception caught on ${path}:`, {
+    console.error(`[UNISYS API] Fetch exception caught on ${path}:`, {
       name: err?.name,
       message: err?.message,
       stack: err?.stack,

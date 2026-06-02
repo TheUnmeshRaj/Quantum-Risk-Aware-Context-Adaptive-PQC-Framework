@@ -1,7 +1,7 @@
 """
 models/schemas.py
 =================
-Pydantic request and response schemas for the Unysis PQC Framework API.
+Pydantic request and response schemas for the UNISYS PQC Framework API.
 
 All API inputs and outputs pass through these models — guaranteeing
 consistent, validated, self-documenting data at every boundary.

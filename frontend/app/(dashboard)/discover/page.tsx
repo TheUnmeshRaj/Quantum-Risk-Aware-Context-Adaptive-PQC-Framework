@@ -3,7 +3,7 @@ import { Topbar } from "@/components/layout/Topbar";
 import { DiscoverContent } from "./DiscoverContent";
 
 export const metadata = {
-  title: "Discover | UNYSIS",
+  title: "Discover | UNISYS",
   description: "Automate subnet service discovery and run context-adaptive post-quantum risk inference.",
 };
 

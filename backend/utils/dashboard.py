@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from backend.utils.devices import DEVICE_PROFILES
 
-st.set_page_config(layout="wide", page_title="Unisys · PQC Platform", page_icon="🔐")
+st.set_page_config(layout="wide", page_title="UNISYS · PQC Platform", page_icon="🔐")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -294,7 +294,7 @@ hr { border-color: rgba(255,255,255,0.06) !important; margin: 1.5rem 0 !importan
 # ── Page Hero Header ─────────────────────────────────────────
 st.markdown("""
 <div class="page-hero">
-  <div class="hero-title">🔐 Unisys · PQC Platform</div>
+  <div class="hero-title">🔐 UNISYS · PQC Platform</div>
   <div class="hero-sub">Quantum Risk-Aware · Context-Adaptive · Post-Quantum Cryptographic Framework</div>
   <div class="hero-badges">
     <span class="hero-badge">⚡ NIST FIPS 203/204/205</span>
