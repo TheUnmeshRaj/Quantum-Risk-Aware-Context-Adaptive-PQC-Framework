@@ -2285,3 +2285,39 @@
 2026-06-02 19:44:59 | INFO     | backend.api.app                  | ============================================================
 2026-06-02 19:44:59 | INFO     | backend.api.app                  |   UNISYS PQC Framework API  —  starting up
 2026-06-02 19:44:59 | INFO     | backend.api.app                  | ============================================================
+2026-06-02 19:45:31 | INFO     | backend.api.app                  | POST /discover — subnets: 192.168.1.0/24, 10.0.0.0/24, speed: standard
+2026-06-02 19:45:33 | INFO     | backend.core.risk_engine         | QRI computed: 48.0 (MODERATE) | sensitivity=6.5 exposure=4.0 lifetime=5.0 threat=5.0 cap=10.0
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Running decision engine for: Host Workstation (Macintosh) (QRI=48.0)
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9280, level=3) for 'Host Workstation (Macintosh)' in 0.87 ms
+2026-06-02 19:45:33 | INFO     | backend.api.app                  | Localhost self-audit successfully appended real host profile: 10.136.19.156
+2026-06-02 19:45:33 | INFO     | backend.api.app                  | LAN ARP sweep empty. Populating network map with standard simulated IoT targets.
+2026-06-02 19:45:33 | INFO     | backend.core.risk_engine         | QRI computed: 37.5 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=4.0 threat=4.0 cap=2.5
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat Node (QRI=37.5)
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8656, level=3) for 'Smart Thermostat Node' in 0.79 ms
+2026-06-02 19:45:33 | INFO     | backend.core.risk_engine         | QRI computed: 81.3 (HIGH) | sensitivity=9.5 exposure=1.0 lifetime=7.5 threat=9.5 cap=10.0
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records Database (QRI=81.3)
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records Database' in 0.99 ms
+2026-06-02 19:45:33 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=8.5 exposure=5.0 lifetime=10.0 threat=8.5 cap=5.0
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Running decision engine for: SCADA Network PLC Unit (QRI=96.0)
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'SCADA Network PLC Unit' in 1.28 ms
+2026-06-02 19:45:33 | INFO     | backend.core.risk_engine         | QRI computed: 43.2 (MODERATE) | sensitivity=5.0 exposure=8.0 lifetime=2.5 threat=5.0 cap=10.0
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Running decision engine for: IP Smart CCTV Camera (QRI=43.2)
+2026-06-02 19:45:33 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8992, level=3) for 'IP Smart CCTV Camera' in 0.94 ms
+2026-06-02 19:45:56 | INFO     | backend.api.app                  | POST /discover — subnets: 192.168.1.0/24, 10.0.0.0/24, speed: turbo
+2026-06-02 19:45:59 | INFO     | backend.core.risk_engine         | QRI computed: 48.0 (MODERATE) | sensitivity=6.5 exposure=4.0 lifetime=5.0 threat=5.0 cap=10.0
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Running decision engine for: Host Workstation (Macintosh) (QRI=48.0)
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.9280, level=3) for 'Host Workstation (Macintosh)' in 0.80 ms
+2026-06-02 19:45:59 | INFO     | backend.api.app                  | Localhost self-audit successfully appended real host profile: 10.136.19.156
+2026-06-02 19:45:59 | INFO     | backend.api.app                  | LAN ARP sweep empty. Populating network map with standard simulated IoT targets.
+2026-06-02 19:45:59 | INFO     | backend.core.risk_engine         | QRI computed: 37.5 (MODERATE) | sensitivity=3.0 exposure=2.0 lifetime=4.0 threat=4.0 cap=2.5
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Running decision engine for: Smart Thermostat Node (QRI=37.5)
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8656, level=3) for 'Smart Thermostat Node' in 0.77 ms
+2026-06-02 19:45:59 | INFO     | backend.core.risk_engine         | QRI computed: 81.3 (HIGH) | sensitivity=9.5 exposure=1.0 lifetime=7.5 threat=9.5 cap=10.0
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Running decision engine for: Hospital Patient Records Database (QRI=81.3)
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'Hospital Patient Records Database' in 1.02 ms
+2026-06-02 19:45:59 | INFO     | backend.core.risk_engine         | QRI computed: 96.0 (CRITICAL) | sensitivity=8.5 exposure=5.0 lifetime=10.0 threat=8.5 cap=5.0
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Running decision engine for: SCADA Network PLC Unit (QRI=96.0)
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Selected 'kyber1024_dilithium5_sphincs' (score=1.0000, level=5) for 'SCADA Network PLC Unit' in 0.95 ms
+2026-06-02 19:45:59 | INFO     | backend.core.risk_engine         | QRI computed: 43.2 (MODERATE) | sensitivity=5.0 exposure=8.0 lifetime=2.5 threat=5.0 cap=10.0
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Running decision engine for: IP Smart CCTV Camera (QRI=43.2)
+2026-06-02 19:45:59 | INFO     | backend.core.decision_engine     | Selected 'kyber768_dilithium3' (score=0.8992, level=3) for 'IP Smart CCTV Camera' in 0.93 ms
