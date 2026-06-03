@@ -104,3 +104,15 @@ export interface HealthResponse {
   version: string;
   uptime_sec: number;
 }
+
+export interface DiscoveredDevice {
+  ip: string;
+  mac: string;
+  profile: DeviceProfileRequest;
+  analysis: AnalyzeResponse;
+}
+
+export interface DiscoverResponse {
+  devices: DiscoveredDevice[];
+  warning?: string;
+}

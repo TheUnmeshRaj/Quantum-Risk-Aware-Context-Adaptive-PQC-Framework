@@ -3,6 +3,8 @@
 import type {
   AnalyzeResponse,
   DeviceProfileRequest,
+  DiscoveredDevice,
+  DiscoverResponse,
   ExplainResponse,
   FleetMetrics,
   HealthResponse,
@@ -36,6 +38,11 @@ if (typeof window !== "undefined") {
   }
 }
 
+type DiscoverStreamEvent =
+  | { type: "device"; device: DiscoveredDevice }
+  | { type: "warning"; warning: string }
+  | { type: "done"; warning?: string | null; count?: number };
+
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const finalUrl = `${BASE}${path}`;
   console.log(`[UNISYS API] Initiating fetch request:`, {
@@ -44,7 +51,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     resolvedBase: BASE,
     finalUrl,
     method: init?.method ?? "GET",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 
   try {
@@ -56,13 +63,16 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     console.log(`[UNISYS API] Response received from ${path}:`, {
       status: res.status,
       statusText: res.statusText,
-      ok: res.ok
+      ok: res.ok,
     });
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({ detail: res.statusText }));
       const errorMsg = err.detail ?? `HTTP ${res.status}`;
-      console.error(`[UNISYS API] Server returned error for ${path}:`, errorMsg);
+      console.error(
+        `[UNISYS API] Server returned error for ${path}:`,
+        errorMsg,
+      );
       throw new Error(errorMsg);
     }
     return res.json() as Promise<T>;
@@ -72,10 +82,102 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
       message: err?.message,
       stack: err?.stack,
       url: finalUrl,
-      help: "If this says 'Failed to fetch', check: 1) Is the backend awake? 2) Is there a CORS policy block? 3) Is there an insecure HTTP mixed content block?"
+      help: "If this says 'Failed to fetch', check: 1) Is the backend awake? 2) Is there a CORS policy block? 3) Is there an insecure HTTP mixed content block?",
     });
     throw err;
   }
+}
+
+async function discoverStream(
+  options?: {
+    subnets?: string;
+    speed?: string;
+    scan_type?: string;
+    targets?: string;
+  },
+  handlers?: {
+    onDevice?: (device: DiscoveredDevice) => void;
+    onWarning?: (warning: string) => void;
+  },
+): Promise<DiscoverResponse> {
+  const path = "/discover/stream";
+  const finalUrl = `${BASE}${path}`;
+
+  const res = await fetch(finalUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(options || {}),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail ?? `HTTP ${res.status}`);
+  }
+
+  if (!res.body) {
+    const fallback = await apiFetch<DiscoverResponse>("/discover", {
+      method: "POST",
+      body: JSON.stringify(options || {}),
+    });
+    if (fallback.warning) {
+      handlers?.onWarning?.(fallback.warning);
+    }
+    fallback.devices.forEach((device) => handlers?.onDevice?.(device));
+    return fallback;
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  const devices: DiscoveredDevice[] = [];
+  let warning: string | undefined;
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
+
+    let newlineIndex = buffer.indexOf("\n");
+    while (newlineIndex >= 0) {
+      const line = buffer.slice(0, newlineIndex).trim();
+      buffer = buffer.slice(newlineIndex + 1);
+
+      if (line) {
+        const event = JSON.parse(line) as DiscoverStreamEvent;
+        if (event.type === "device") {
+          devices.push(event.device);
+          handlers?.onDevice?.(event.device);
+        } else if (event.type === "warning" && event.warning) {
+          warning = event.warning;
+          handlers?.onWarning?.(event.warning);
+        } else if (event.type === "done" && event.warning) {
+          warning = event.warning;
+          handlers?.onWarning?.(event.warning);
+        }
+      }
+
+      newlineIndex = buffer.indexOf("\n");
+    }
+
+    if (done) {
+      const trailing = buffer.trim();
+      if (trailing) {
+        const event = JSON.parse(trailing) as DiscoverStreamEvent;
+        if (event.type === "device") {
+          devices.push(event.device);
+          handlers?.onDevice?.(event.device);
+        } else if (
+          (event.type === "warning" || event.type === "done") &&
+          event.warning
+        ) {
+          warning = event.warning;
+          handlers?.onWarning?.(event.warning);
+        }
+      }
+      break;
+    }
+  }
+
+  return { devices, warning };
 }
 
 export const api = {
@@ -99,9 +201,16 @@ export const api = {
       body: JSON.stringify(device),
     }),
 
-  discover: (subnets?: string, speed?: string) =>
-    apiFetch<{ devices: any[] }>("/discover", {
+  discover: (options?: {
+    subnets?: string;
+    speed?: string;
+    scan_type?: string;
+    targets?: string;
+  }) =>
+    apiFetch<DiscoverResponse>("/discover", {
       method: "POST",
-      body: JSON.stringify({ subnets, speed }),
+      body: JSON.stringify(options || {}),
     }),
+
+  discoverStream,
 };

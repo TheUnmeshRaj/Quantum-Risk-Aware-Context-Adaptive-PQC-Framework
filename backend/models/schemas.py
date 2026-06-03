@@ -199,16 +199,20 @@ class DiscoverRequest(BaseModel):
     """POST /discover request body."""
     subnets: Optional[str] = Field("192.168.1.0/24", description="IP subnets to scan")
     speed:   Optional[str] = Field("standard", description="standard | turbo")
+    scan_type: Optional[str] = Field("standard", description="standard | nmap")
+    targets: Optional[str] = Field(None, description="Comma-separated hostnames, URLs, or CIDRs for deep nmap scan")
 
 
 class DiscoveredDevice(BaseModel):
     """Discovered host details and full QRI analysis response."""
     ip:       str
     mac:      str
+    profile:  DeviceProfileRequest
     analysis: AnalyzeResponse
 
 
 class DiscoverResponse(BaseModel):
     """POST /discover response containing all active network hosts."""
     devices: list[DiscoveredDevice]
+    warning: Optional[str] = None
 

@@ -24,24 +24,47 @@ Error handling
 
 from __future__ import annotations
 
-import time
+import json
+import platform
+import re
+import shutil
 import socket
 import subprocess
-import re
-import platform
+import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Request #type:ignore
-from fastapi.middleware.cors import CORSMiddleware #type:ignore
-from fastapi.middleware.gzip import GZipMiddleware #type:ignore 
-from fastapi.responses import JSONResponse #type:ignore
+from fastapi import FastAPI, HTTPException, Request  # type:ignore
+from fastapi.middleware.cors import CORSMiddleware  # type:ignore
+from fastapi.middleware.gzip import GZipMiddleware  # type:ignore
+from fastapi.responses import JSONResponse, StreamingResponse  # type:ignore
 
+from backend.core.decision_engine import (
+    compute_capability_from_hardware,
+    select_algorithm_scored,
+)
+from backend.core.network_discovery import (
+    get_local_subnet,
+    nmap,
+    scan_arp_fast,
+    scan_mdns,
+    scan_nmap,
+)
 from backend.core.risk_engine import compute_qri, normalize_lifetime
-from backend.core.decision_engine import select_algorithm_scored, compute_capability_from_hardware
 from backend.models.schemas import (
-    AnalyzeResponse, ConstraintsSummary, DeviceProfileRequest,
-    ExplainResponse, FleetMetrics, HealthResponse, RejectedAlgorithm, ScoreBreakdown, SimulateRequest,
-    SimulateResponse, AlgorithmAlternative, DiscoverRequest, DiscoverResponse, DiscoveredDevice,
+    AlgorithmAlternative,
+    AnalyzeResponse,
+    ConstraintsSummary,
+    DeviceProfileRequest,
+    DiscoveredDevice,
+    DiscoverRequest,
+    DiscoverResponse,
+    ExplainResponse,
+    FleetMetrics,
+    HealthResponse,
+    RejectedAlgorithm,
+    ScoreBreakdown,
+    SimulateRequest,
+    SimulateResponse,
 )
 from backend.simulation.evaluator import evaluate_fleet
 from backend.utils.logger import get_logger
@@ -51,6 +74,7 @@ logger = get_logger(__name__)
 _START_TIME = time.time()
 
 # ── Application lifecycle ─────────────────────────────────────────────────────
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -92,9 +116,15 @@ async def add_process_time_header(request: Request, call_next):
     response = await call_next(request)
     elapsed = round((time.time() - t0) * 1000, 2)
     response.headers["X-Process-Time-Ms"] = str(elapsed)
-    logger.debug("%s %s → %d  (%.2f ms)", request.method, request.url.path,
-                 response.status_code, elapsed)
+    logger.debug(
+        "%s %s → %d  (%.2f ms)",
+        request.method,
+        request.url.path,
+        response.status_code,
+        elapsed,
+    )
     return response
+
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
@@ -102,9 +132,9 @@ async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=exc.status_code,
         content={
-            "detail":     exc.detail,
+            "detail": exc.detail,
             "error_code": f"ERR_{exc.status_code}",
-            "timestamp":  time.time(),
+            "timestamp": time.time(),
         },
     )
 
@@ -115,73 +145,264 @@ async def general_exception_handler(request: Request, exc: Exception):
     return JSONResponse(
         status_code=500,
         content={
-            "detail":     "Internal server error",
+            "detail": "Internal server error",
             "error_code": "ERR_500",
-            "timestamp":  time.time(),
+            "timestamp": time.time(),
         },
     )
 
 
 # ── Internal helpers ──────────────────────────────────────────────────────────
 
+
 def _build_analyze_response(dev: DeviceProfileRequest) -> AnalyzeResponse:
     """Run the full pipeline for one device and return a typed response."""
     hw_dict = {
-        "ram_kb":         dev.hardware.ram_kb,
-        "cpu":            dev.hardware.cpu,
-        "has_fpu":        dev.hardware.has_fpu,
+        "ram_kb": dev.hardware.ram_kb,
+        "cpu": dev.hardware.cpu,
+        "has_fpu": dev.hardware.has_fpu,
         "bandwidth_kbps": dev.hardware.bandwidth_kbps,
     }
     cap = compute_capability_from_hardware(hw_dict)
 
     qri_out = compute_qri(
-        data_sensitivity  = dev.data_sensitivity,
-        exposure_level    = dev.exposure_level,
-        data_lifetime     = normalize_lifetime(dev.data_lifetime_yrs),
-        threat_window     = dev.threat_window,
-        device_capability = cap,
+        data_sensitivity=dev.data_sensitivity,
+        exposure_level=dev.exposure_level,
+        data_lifetime=normalize_lifetime(dev.data_lifetime_yrs),
+        threat_window=dev.threat_window,
+        device_capability=cap,
     )
 
     dev_dict = dev.model_dump()
     decision = select_algorithm_scored(
-        qri      = qri_out["qri"],
-        hardware = hw_dict,
-        device   = dev_dict,
+        qri=qri_out["qri"],
+        hardware=hw_dict,
+        device=dev_dict,
     )
 
     return AnalyzeResponse(
-        device             = dev.name,
-        qri                = qri_out["qri"],
-        qri_tier           = qri_out["qri_tier"],
-        selected_algorithm = decision.algorithm_key,
-        mode               = decision.algorithm_info.get("mode", ""),
-        security_level     = decision.algorithm_info.get("security_level", ""),
-        score              = decision.score,
-        required_nist_level = decision.required_level,
-        achieved_nist_level = decision.achieved_level,
-        security_gap        = decision.security_gap,
-        warning             = decision.warning,
-        reason              = decision.reason,
-        alternatives=[
-            AlgorithmAlternative(**a) for a in decision.alternatives
-        ],
-        rejected=[
-            RejectedAlgorithm(**r) for r in decision.rejected
-        ],
+        device=dev.name,
+        qri=qri_out["qri"],
+        qri_tier=qri_out["qri_tier"],
+        selected_algorithm=decision.algorithm_key,
+        mode=decision.algorithm_info.get("mode", ""),
+        security_level=decision.algorithm_info.get("security_level", ""),
+        score=decision.score,
+        required_nist_level=decision.required_level,
+        achieved_nist_level=decision.achieved_level,
+        security_gap=decision.security_gap,
+        warning=decision.warning,
+        reason=decision.reason,
+        alternatives=[AlgorithmAlternative(**a) for a in decision.alternatives],
+        rejected=[RejectedAlgorithm(**r) for r in decision.rejected],
         constraints=ConstraintsSummary(
-            ram_kb           = dev.hardware.ram_kb,
-            has_fpu          = dev.hardware.has_fpu,
-            bandwidth_kbps   = dev.hardware.bandwidth_kbps,
-            capability_score = cap,
+            ram_kb=dev.hardware.ram_kb,
+            has_fpu=dev.hardware.has_fpu,
+            bandwidth_kbps=dev.hardware.bandwidth_kbps,
+            capability_score=cap,
         ),
         breakdown=ScoreBreakdown(**decision.breakdown),
-        processing_time_ms = decision.processing_time_ms,
+        processing_time_ms=decision.processing_time_ms,
     )
+
+
+def _iter_discovery_events(req: DiscoverRequest):
+    """Yield discovery progress events so UI clients can render devices incrementally."""
+    requested_subnets = [s.strip() for s in (req.subnets or "").split(",") if s.strip()]
+    if not requested_subnets:
+        default_subnet = get_local_subnet() or "192.168.1.0/24"
+        requested_subnets = [default_subnet]
+
+    seen_ips: set[str] = set()
+    ip_mac_map: dict[str, str] = {}
+    warnings: list[str] = []
+    emitted_count = 0
+
+    def build_generic_profile(
+        host_ip: str, host_mac: str, host_name: str
+    ) -> DeviceProfileRequest:
+        return DeviceProfileRequest(
+            name=host_name or f"Discovered Device {host_ip}",
+            description=f"Discovered by ARP scan on {host_ip}",
+            data_sensitivity=5.0,
+            exposure_level=6.5,
+            data_lifetime_yrs=5.0,
+            threat_window=5.0,
+            adversary="medium",
+            hardware={
+                "ram_kb": 512000,
+                "cpu": host_name or "Unknown device",
+                "has_fpu": False,
+                "bandwidth_kbps": 100000.0,
+            },
+        )
+
+    def emit_device(ip: str, mac: str, name: str):
+        nonlocal emitted_count
+        normalized_mac = (mac or "UNKNOWN").upper()
+        dev_req = build_generic_profile(ip, normalized_mac, name)
+        analysis = _build_analyze_response(dev_req)
+        emitted_count += 1
+        return {
+            "type": "device",
+            "device": DiscoveredDevice(
+                ip=ip,
+                mac=normalized_mac,
+                profile=dev_req,
+                analysis=analysis,
+            ).model_dump(),
+        }
+
+    for subnet in requested_subnets:
+        try:
+            hosts = scan_arp_fast(subnet, timeout=1)
+        except Exception as e:
+            logger.warning("ARP scan failed for subnet %s: %s", subnet, e)
+            hosts = []
+
+        for host in hosts:
+            ip = host.get("ip")
+            mac = host.get("mac")
+            name = host.get("hostname") or host.get("ip")
+            if not ip or not mac:
+                continue
+            if ip in ("255.255.255.255", "127.0.0.1", "0.0.0.0") or ip.startswith(
+                "224."
+            ):
+                continue
+            if ip in seen_ips:
+                continue
+            seen_ips.add(ip)
+            ip_mac_map[ip] = mac.upper()
+            yield emit_device(ip, mac, name)
+
+    try:
+        mdns_hosts = scan_mdns(timeout=3.0)
+    except Exception as e:
+        logger.warning("mDNS scan failed: %s", e)
+        mdns_hosts = []
+
+    for mdns in mdns_hosts:
+        for ip in mdns.get("addresses", []):
+            if not ip or ip in seen_ips:
+                continue
+            if ip in ("255.255.255.255", "127.0.0.1", "0.0.0.0") or ip.startswith(
+                "224."
+            ):
+                continue
+            seen_ips.add(ip)
+            mac = ip_mac_map.get(ip, "UNKNOWN")
+            service_name = mdns.get("name") or mdns.get("server") or ip
+            device_name = f"{service_name} ({mdns.get('service_type')})"
+            yield emit_device(ip, mac, device_name)
+
+    try:
+        local_ip = "127.0.0.1"
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        local_ip = s.getsockname()[0]
+        s.close()
+    except Exception:
+        try:
+            local_ip = socket.gethostbyname(socket.gethostname())
+        except Exception:
+            local_ip = "127.0.0.1"
+
+    if local_ip not in seen_ips:
+        try:
+            import uuid
+
+            mac_num = uuid.getnode()
+            mac_str = ":".join(re.findall(r"..", f"{mac_num:012X}")).upper()
+        except Exception:
+            mac_str = "00:00:00:00:00:00"
+
+        host_dev_req = DeviceProfileRequest(
+            name=f"Local Host ({platform.node()})",
+            description="Local machine self-audit",
+            data_sensitivity=6.5,
+            exposure_level=4.0,
+            data_lifetime_yrs=10.0,
+            threat_window=5.0,
+            adversary="medium",
+            hardware={
+                "ram_kb": 16000000,
+                "cpu": platform.processor() or platform.machine(),
+                "has_fpu": True,
+                "bandwidth_kbps": 1000000.0,
+            },
+        )
+        host_analysis = _build_analyze_response(host_dev_req)
+        seen_ips.add(local_ip)
+        emitted_count += 1
+        yield {
+            "type": "device",
+            "device": DiscoveredDevice(
+                ip=local_ip,
+                mac=mac_str,
+                profile=host_dev_req,
+                analysis=host_analysis,
+            ).model_dump(),
+        }
+
+    if req.scan_type == "nmap":
+        if nmap is None:
+            warnings.append("python-nmap is not installed on the backend.")
+        if not shutil.which("nmap"):
+            warnings.append("nmap binary is not installed or not available on PATH.")
+        if warnings:
+            yield {"type": "warning", "warning": "; ".join(warnings)}
+
+        nmap_targets = []
+        if req.targets:
+            nmap_targets = [t.strip() for t in req.targets.split(",") if t.strip()]
+        if not nmap_targets:
+            nmap_targets = requested_subnets
+
+        for target in nmap_targets:
+            try:
+                nmap_hosts = scan_nmap(target)
+            except Exception as e:
+                logger.warning("Nmap deep scan failed for target %s: %s", target, e)
+                nmap_hosts = []
+
+            for host in nmap_hosts:
+                ip = host.get("ip")
+                mac = host.get("mac") or "UNKNOWN"
+                name = host.get("hostname") or host.get("ip")
+                if not ip:
+                    continue
+                if ip in ("255.255.255.255", "127.0.0.1", "0.0.0.0") or ip.startswith(
+                    "224."
+                ):
+                    continue
+                if ip in seen_ips:
+                    continue
+                seen_ips.add(ip)
+                ip_mac_map[ip] = mac.upper()
+                service_info = host.get("service_details")
+                device_name = f"{name} (nmap)"
+                if isinstance(service_info, list) and service_info:
+                    port_summary = ", ".join(
+                        str(entry.get("port")) for entry in service_info[:3]
+                    )
+                    device_name = f"{name} [{port_summary}+]"
+                yield emit_device(ip, mac, device_name)
+
+    if emitted_count == 0:
+        logger.info("ARP discovery returned no devices; returning an empty device list")
+
+    yield {
+        "type": "done",
+        "warning": "; ".join(warnings) if warnings else None,
+        "count": emitted_count,
+    }
 
 
 # ═══════════════════════════════════════════════════════════
 # ENDPOINTS
 # ═══════════════════════════════════════════════════════════
+
 
 @app.get(
     "/health",
@@ -192,10 +413,10 @@ def _build_analyze_response(dev: DeviceProfileRequest) -> AnalyzeResponse:
 async def health_check() -> HealthResponse:
     """Returns service status, version, and uptime in seconds."""
     return HealthResponse(
-        status     = "healthy",
-        service    = "UNISYS PQC Decision Framework",
-        version    = "2.0.0",
-        uptime_sec = round(time.time() - _START_TIME, 1),
+        status="healthy",
+        service="UNISYS PQC Decision Framework",
+        version="2.0.0",
+        uptime_sec=round(time.time() - _START_TIME, 1),
     )
 
 
@@ -253,8 +474,8 @@ async def simulate_fleet(request: SimulateRequest) -> SimulateResponse:
     results = [_build_analyze_response(d) for d in request.devices]
 
     return SimulateResponse(
-        results       = results,
-        fleet_metrics = FleetMetrics(**fleet_metrics),
+        results=results,
+        fleet_metrics=FleetMetrics(**fleet_metrics),
     )
 
 
@@ -277,71 +498,68 @@ async def explain_decision(device: DeviceProfileRequest) -> ExplainResponse:
     logger.info("POST /explain — device: %s", device.name)
 
     hw_dict = {
-        "ram_kb":         device.hardware.ram_kb,
-        "cpu":            device.hardware.cpu,
-        "has_fpu":        device.hardware.has_fpu,
+        "ram_kb": device.hardware.ram_kb,
+        "cpu": device.hardware.cpu,
+        "has_fpu": device.hardware.has_fpu,
         "bandwidth_kbps": device.hardware.bandwidth_kbps,
     }
     cap = compute_capability_from_hardware(hw_dict)
 
     qri_out = compute_qri(
-        data_sensitivity  = device.data_sensitivity,
-        exposure_level    = device.exposure_level,
-        data_lifetime     = normalize_lifetime(device.data_lifetime_yrs),
-        threat_window     = device.threat_window,
-        device_capability = cap,
+        data_sensitivity=device.data_sensitivity,
+        exposure_level=device.exposure_level,
+        data_lifetime=normalize_lifetime(device.data_lifetime_yrs),
+        threat_window=device.threat_window,
+        device_capability=cap,
     )
     qri = qri_out["qri"]
 
     decision = select_algorithm_scored(
-        qri      = qri,
-        hardware = hw_dict,
-        device   = device.model_dump(),
+        qri=qri,
+        hardware=hw_dict,
+        device=device.model_dump(),
     )
 
     steps = [
         f"Step 1 - Risk Inputs: sensitivity={device.data_sensitivity}, "
         f"exposure={device.exposure_level}, lifetime={device.data_lifetime_yrs}yrs, "
         f"threat_window={device.threat_window}, adversary='{device.adversary}'.",
-
         f"Step 2 — Hardware Profile: RAM={device.hardware.ram_kb:,} KB, "
         f"CPU='{device.hardware.cpu}', FPU={'yes' if device.hardware.has_fpu else 'no'}, "
         f"Bandwidth={device.hardware.bandwidth_kbps:,} kbps -> "
         f"Capability score = {cap:.2f} / 10.",
-
         f"Step 3 — QRI Computation: weighted sum of 5 factors -> raw={qri_out['raw_score']}, "
         f"HNDL amplifier={'fired' if qri_out['amplified'] else 'not triggered'} -> "
         f"QRI = {qri} ({qri_out['qri_tier']}).",
-
-        f"Step 4 — Required NIST Level: base={qri/20:.2f} from QRI, "
+        f"Step 4 — Required NIST Level: base={qri / 20:.2f} from QRI, "
         f"lifetime bump={'yes' if device.data_lifetime_yrs > 10 else 'no'}, "
         f"adversary bump ({'nation_state +1.5' if device.adversary == 'nation_state' else 'medium +0.5' if device.adversary == 'medium' else 'low +0'}) "
         f"-> required = L{decision.required_level:.2f}.",
-
         f"Step 5 — Constraint Filtering: {len(decision.rejected)} algorithm(s) eliminated "
         f"by hardware constraints (RAM / FPU checks).",
-
         f"Step 6 - Multi-Factor Scoring: remaining candidates scored on "
         f"security_fit (60%), ram_fit (25%), bandwidth_fit (15%). "
         f"Under-level candidates receive a 0.3x penalty.",
-
         f"Step 7 - Selection: '{decision.algorithm_key}' scored {decision.score:.4f} - "
         f"highest composite score among feasible candidates.",
-
         f"Step 8 - Gap Check: achieved NIST L{decision.achieved_level} vs required "
         f"L{decision.required_level:.2f} -> gap = {decision.security_gap:.2f} "
-        + ("(WARNING: security gap exists)" if decision.security_gap > 0 else "(no gap - fully compliant)."),
+        + (
+            "(WARNING: security gap exists)"
+            if decision.security_gap > 0
+            else "(no gap - fully compliant)."
+        ),
     ]
 
     return ExplainResponse(
-        device          = device.name,
-        qri             = qri,
-        required_level  = decision.required_level,
-        step_by_step    = steps,
-        selected        = decision.algorithm_key,
-        selected_reason = decision.reason,
-        alternatives    = [AlgorithmAlternative(**a) for a in decision.alternatives],
-        rejected        = [RejectedAlgorithm(**r) for r in decision.rejected],
+        device=device.name,
+        qri=qri,
+        required_level=decision.required_level,
+        step_by_step=steps,
+        selected=decision.algorithm_key,
+        selected_reason=decision.reason,
+        alternatives=[AlgorithmAlternative(**a) for a in decision.alternatives],
+        rejected=[RejectedAlgorithm(**r) for r in decision.rejected],
     )
 
 
@@ -356,7 +574,7 @@ async def root_status():
         "status": "healthy",
         "service": "UNISYS PQC Decision Framework API",
         "version": "2.0.0",
-        "docs": "/docs"
+        "docs": "/docs",
     }
 
 
@@ -364,170 +582,52 @@ async def root_status():
     "/discover",
     response_model=DiscoverResponse,
     tags=["Simulation"],
-    summary="Perform a real subnet scan and run PQC inference on discovered devices",
+    summary="Perform an ARP subnet scan and run PQC inference on discovered devices",
 )
 async def discover_network(req: DiscoverRequest) -> DiscoverResponse:
     """
-    Performs a real OS ARP subnet sweep and TCP socket sweep for active hosts on local ports,
-    falls back to a real Localhost Self-Audit to query your actual machine specifications,
-    and falls back to resilient simulated nodes in sandboxed cloud environments.
+    Performs a real ARP sweep on the requested subnet(s) and returns all
+    reachable devices by IP/MAC along with a generic PQC analysis.
     """
-    logger.info("POST /discover — subnets: %s, speed: %s", req.subnets, req.speed)
-    
-    import uuid
-    discovered_hosts = []
-    
-    # 1. Probe the ARP table (works on Windows, Linux, macOS)
-    try:
-        cmd = ["arp", "-a"] if platform.system() == "Windows" else ["arp", "-n"]
-        out = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode("utf-8")
-        raw_hosts = re.findall(
-            r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\s+([0-9a-fA-F:-]{17})", 
-            out
-        )
-    except Exception as e:
-        logger.warning("ARP sweep unavailable: %s", e)
-        raw_hosts = []
+    logger.info(
+        "POST /discover — subnets: %s, speed: %s, scan_type: %s",
+        req.subnets,
+        req.speed,
+        req.scan_type,
+    )
 
-    # Map of ports representing specific device hardware profiles
-    port_spec_mapping = {
-        22: {"name": "Linux Gateway Controller", "cpu": "ARM Cortex-A72", "ram_kb": 2048000, "has_fpu": True, "bandwidth_kbps": 100000.0, "sensitivity": 8.0, "exposure": 4.0, "lifetime": 10.0, "threat": 8.0, "adv": "nation_state"},
-        80: {"name": "IP Smart CCTV Camera", "cpu": "ARM Cortex-A53", "ram_kb": 512000, "has_fpu": True, "bandwidth_kbps": 50000.0, "sensitivity": 5.0, "exposure": 7.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium"},
-        443: {"name": "IP Smart CCTV Camera", "cpu": "ARM Cortex-A53", "ram_kb": 512000, "has_fpu": True, "bandwidth_kbps": 50000.0, "sensitivity": 5.0, "exposure": 7.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium"},
-        502: {"name": "SCADA Network PLC Unit", "cpu": "ARM Cortex-M7", "ram_kb": 4096, "has_fpu": True, "bandwidth_kbps": 100.0, "sensitivity": 9.0, "exposure": 2.0, "lifetime": 20.0, "threat": 9.0, "adv": "nation_state"},
-        47808: {"name": "Building Thermostat BACnet Controller", "cpu": "ARM Cortex-M4", "ram_kb": 512, "has_fpu": False, "bandwidth_kbps": 100.0, "sensitivity": 3.0, "exposure": 5.0, "lifetime": 8.0, "threat": 4.0, "adv": "low"}
-    }
+    discovered_hosts: list[DiscoveredDevice] = []
+    warning: str | None = None
 
-    # 2. Sweep open ports for active network hosts
-    for ip, mac in raw_hosts:
-        # Skip broadcast or local loops
-        if ip in ("255.255.255.255", "127.0.0.1", "0.0.0.0") or ip.startswith("224."):
-            continue
-            
-        matched_spec = None
-        for port, spec in port_spec_mapping.items():
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(0.04)  # fast scan timeout
-            res = sock.connect_ex((ip, port))
-            sock.close()
-            if res == 0:
-                matched_spec = spec
-                break
-        
-        if matched_spec:
-            dev_req = DeviceProfileRequest(
-                name=matched_spec["name"],
-                data_sensitivity=matched_spec["sensitivity"],
-                exposure_level=matched_spec["exposure"],
-                data_lifetime_yrs=matched_spec["lifetime"],
-                threat_window=matched_spec["threat"],
-                adversary=matched_spec["adv"],
-                hardware={
-                    "ram_kb": matched_spec["ram_kb"],
-                    "cpu": matched_spec["cpu"],
-                    "has_fpu": matched_spec["has_fpu"],
-                    "bandwidth_kbps": matched_spec["bandwidth_kbps"]
-                }
-            )
-            analysis = _build_analyze_response(dev_req)
-            discovered_hosts.append(
-                DiscoveredDevice(ip=ip, mac=mac.upper(), analysis=analysis)
-            )
+    for event in _iter_discovery_events(req):
+        event_type = event.get("type")
+        if event_type == "device":
+            discovered_hosts.append(DiscoveredDevice(**event["device"]))
+        elif event_type in {"warning", "done"} and event.get("warning"):
+            warning = str(event["warning"])
 
-    # 3. Dynamic Local Host Machine Self-Audit (Tier 2/3 check)
-    # Always try to inject the actual developer host machine profile to showcase real hardware sweeps
-    try:
-        # Query host interface IP address
-        local_ip = "127.0.0.1"
-        try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.connect(("8.8.8.8", 80))
-            local_ip = s.getsockname()[0]
-            s.close()
-        except Exception:
-            try:
-                local_ip = socket.gethostbyname(socket.gethostname())
-            except Exception:
-                local_ip = "127.0.0.1"
+    return DiscoverResponse(devices=discovered_hosts, warning=warning)
 
-        # Query host physical MAC Address
-        try:
-            mac_num = uuid.getnode()
-            mac_str = ':'.join(re.findall(r'..', '%012X' % mac_num)).upper()
-        except Exception:
-            mac_str = "D4:3B:04:E6:B1:A7"
 
-        # Query host CPU architecture
-        cpu_arch = platform.machine()
-        cpu_processor = platform.processor() or "Multi-Core CPU"
-        cpu_clean = cpu_processor if len(cpu_processor) < 25 else f"{cpu_arch} Processor"
+@app.post(
+    "/discover/stream",
+    tags=["Simulation"],
+    summary="Stream discovered devices as soon as they are found",
+)
+async def discover_network_stream(req: DiscoverRequest):
+    logger.info(
+        "POST /discover/stream — subnets: %s, speed: %s, scan_type: %s",
+        req.subnets,
+        req.speed,
+        req.scan_type,
+    )
 
-        # Query total RAM
-        ram_val_kb = 16000000  # Default to 16GB
-        try:
-            import psutil
-            ram_val_kb = int(psutil.virtual_memory().total / 1024)
-        except ImportError:
-            pass
+    def event_stream():
+        for event in _iter_discovery_events(req):
+            yield json.dumps(event) + "\n"
 
-        # Build Host profile
-        host_dev_req = DeviceProfileRequest(
-            name=f"Host Workstation ({platform.node()})",
-            data_sensitivity=6.5,
-            exposure_level=4.0,
-            data_lifetime_yrs=10.0,
-            threat_window=5.0,
-            adversary="medium",
-            hardware={
-                "ram_kb": ram_val_kb,
-                "cpu": f"{cpu_clean}",
-                "has_fpu": True,
-                "bandwidth_kbps": 1000000.0  # 1 Gbps loopback/NIC speed
-            }
-        )
-        host_analysis = _build_analyze_response(host_dev_req)
-        
-        # Insert host at the top of discovered hosts list!
-        discovered_hosts.insert(0,
-            DiscoveredDevice(ip=local_ip, mac=mac_str, analysis=host_analysis)
-        )
-        logger.info("Localhost self-audit successfully appended real host profile: %s", local_ip)
-    except Exception as hex_err:
-        logger.warning("Localhost self-audit sweep failed: %s", hex_err)
-
-    # 4. Resilient fallback to simulated hosts if no other LAN devices are found
-    # (keeps the grid active and beautiful under isolated/cloud container networks)
-    if len(discovered_hosts) <= 1:
-        logger.info("LAN ARP sweep empty. Populating network map with standard simulated IoT targets.")
-        fallback_targets = [
-            {"ip": "192.168.1.15", "mac": "5C:A6:2D:4B:11:0C", "name": "Smart Thermostat Node", "sensitivity": 3.0, "exposure": 2.0, "lifetime": 8.0, "threat": 4.0, "adv": "low", "cpu": "ARM Cortex-M4", "ram": 512, "fpu": False, "bw": 100.0},
-            {"ip": "10.0.0.42", "mac": "D8:43:0E:8F:2C:14", "name": "Hospital Patient Records Database", "sensitivity": 9.5, "exposure": 1.0, "lifetime": 15.0, "threat": 9.5, "adv": "nation_state", "cpu": "x86-64 server", "ram": 16000000, "fpu": True, "bw": 1000000.0},
-            {"ip": "192.168.1.88", "mac": "00:1A:2B:3C:4D:5E", "name": "SCADA Network PLC Unit", "sensitivity": 8.5, "exposure": 5.0, "lifetime": 20.0, "threat": 8.5, "adv": "nation_state", "cpu": "ARM Cortex-M7", "ram": 2048, "fpu": True, "bw": 1000.0},
-            {"ip": "10.0.0.119", "mac": "F0:E1:D2:C3:B4:A5", "name": "IP Smart CCTV Camera", "sensitivity": 5.0, "exposure": 8.0, "lifetime": 5.0, "threat": 5.0, "adv": "medium", "cpu": "ARM Cortex-A53", "ram": 1024000, "fpu": True, "bw": 50000.0}
-        ]
-        
-        for t in fallback_targets:
-            # Prevent duplicating host IP if fallback matches
-            if any(h.ip == t["ip"] for h in discovered_hosts):
-                continue
-                
-            dev_req = DeviceProfileRequest(
-                name=t["name"],
-                data_sensitivity=t["sensitivity"],
-                exposure_level=t["exposure"],
-                data_lifetime_yrs=t["lifetime"],
-                threat_window=t["threat"],
-                adversary=t["adv"],
-                hardware={
-                    "ram_kb": t["ram"],
-                    "cpu": t["cpu"],
-                    "has_fpu": t["fpu"],
-                    "bandwidth_kbps": t["bw"]
-                }
-            )
-            analysis = _build_analyze_response(dev_req)
-            discovered_hosts.append(
-                DiscoveredDevice(ip=t["ip"], mac=t["mac"], analysis=analysis)
-            )
-
-    return DiscoverResponse(devices=discovered_hosts)
+    return StreamingResponse(
+        event_stream(),
+        media_type="application/x-ndjson",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
