@@ -7127,3 +7127,6 @@ NameError: name 'shutil' is not defined. Did you forget to import 'shutil'
 2026-06-03 21:13:05 | INFO     | backend.api.app                  | ============================================================
 2026-06-03 21:13:05 | INFO     | backend.api.app                  |   UNISYS PQC Framework API  —  starting up
 2026-06-03 21:13:05 | INFO     | backend.api.app                  | ============================================================
+2026-06-04 11:14:25 | INFO     | backend.api.app                  | ============================================================
+2026-06-04 11:14:25 | INFO     | backend.api.app                  |   UNISYS PQC Framework API  —  starting up
+2026-06-04 11:14:25 | INFO     | backend.api.app                  | ============================================================
